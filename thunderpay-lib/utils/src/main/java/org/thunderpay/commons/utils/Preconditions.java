@@ -28,6 +28,20 @@ public final class Preconditions {
         return reference;
     }
 
+    public static void checkState(final boolean b, final String errorMessageTemplate, @CheckForNull final Object p1) {
+        if (!b) {
+            throw new IllegalStateException(lenientFormat(errorMessageTemplate, p1));
+        }
+    }
+
+    public static<T> T checkNotNull(final T reference) {
+        if (reference == null) {
+            throw new NullPointerException();
+        }
+
+        return reference;
+    }
+
     private static String lenientFormat(@CheckForNull String template, @CheckForNull Object... args) {
         template = String.valueOf(template);
 
