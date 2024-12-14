@@ -55,6 +55,20 @@ public abstract class AbstractInvocationHandler implements InvocationHandler {
     @CheckForNull
     protected abstract Object handleInvocation(Object proxy, Method method, Object[] args) throws Throwable;
 
+    @Override
+    public boolean equals(@CheckForNull final Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
     private static boolean isProxyOfSameInterface(final Object arg, final Class<?> proxyClass) {
         return proxyClass.isInstance(arg) || (Proxy.isProxyClass(arg.getClass())) && Arrays.equals(arg.getClass().getInterfaces(), proxyClass.getInterfaces());
