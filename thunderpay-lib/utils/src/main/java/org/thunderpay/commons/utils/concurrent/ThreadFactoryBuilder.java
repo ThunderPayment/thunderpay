@@ -45,7 +45,7 @@ public final class ThreadFactoryBuilder {
 
     public ThreadFactoryBuilder setUncaughtExceptionHandler(final UncaughtExceptionHandler uncaughtExceptionHandler) {
         this.uncaughtExceptionHandler = Preconditions.checkNotNull(uncaughtExceptionHandler);
-        return this
+        return this;
     }
 
     public ThreadFactoryBuilder setThreadFactory(final ThreadFactory backingThreadFactory) {
@@ -58,6 +58,40 @@ public final class ThreadFactoryBuilder {
     }
 
     private static ThreadFactory doBuild(final ThreadFactoryBuilder builder) {
-        
+        final String nameFormat = builder.nameFormat;
+        final Boolean daemon = builder.daemon;
+        final Integer priority = builder.priority;
+        final UncaughtExceptionHandler uncaughtExceptionHandler = builder.uncaughtExceptionHandler;
+        final ThreadFactory backingThreadFactory = builder.backingThreadFactory != null ? builder.backingThreadFactory : Executors.defaultThreadFactory();
+        final AtomicLong count = (nameFormat != null) ? new AtomicLong(0) : null;
+
+        return new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable runnable) {
+                final Thread thread = backingThreadFactory.newThread(runnable);
+
+                if (nameFormat != null) {
+                    thread.setName(format(nameFormat, requireNonNull(count).getAndIncrement()));
+                }
+
+                if (daemon != null) {
+                    thread.setDaemon(daemon);
+                }
+
+                if (priority != null) {
+                    thread.setPriority(priority);
+                }
+
+                if (uncaughtExceptionHandler != null) {
+                    thread.setUncaughtExceptionHandler(uncaughtExceptionHandler);
+                }
+
+                return thread;
+            }
+        };
+    }
+
+    private static String format(final String format, final Object... args) {
+        return String.format(Locale.ROOT, format, args);
     }
 }
