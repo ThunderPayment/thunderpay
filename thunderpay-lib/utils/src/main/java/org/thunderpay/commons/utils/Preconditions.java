@@ -42,6 +42,22 @@ public final class Preconditions {
         return reference;
     }
 
+    public static<T> T checkNotNull(@CheckForNull final T reference, @CheckForNull final Object errorMessage) {
+        if (reference == null) {
+            throw new NullPointerException(String.valueOf(errorMessage));
+        }
+
+        return reference;
+    }
+
+    public static<T> T checkNotNull(@CheckForNull final T obj, final String errorMessageTemplate, @CheckForNull final Object p1) {
+        if (obj == null) {
+            throw new NullPointerException(lenientFormat(errorMessageTemplate, p1));
+        }
+
+        return obj;
+    }
+
     private static String lenientFormat(@CheckForNull String template, @CheckForNull Object... args) {
         template = String.valueOf(template);
 
