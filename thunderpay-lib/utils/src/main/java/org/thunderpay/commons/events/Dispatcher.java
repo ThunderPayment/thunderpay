@@ -3,9 +3,10 @@ package org.thunderpay.commons.events;
 import java.util.ArrayDeque;
 import java.util.Iterator;
 import java.util.Queue;
-import org.thunderpay.commons.utils.Preconditions
+import org.thunderpay.commons.utils.Preconditions;
 
 abstract class Dispatcher {
+
     static Dispatcher perThreadDispatchQueue() {
         return new PerThreadQueuedDispatcher();
     }
@@ -18,6 +19,7 @@ abstract class Dispatcher {
 
     static final class PerThreadQueuedDispatcher extends Dispatcher {
         private final ThreadLocal<Queue<Event>> queue = ThreadLocal.withInitial(ArrayDeque::new);
+
         private final ThreadLocal<Boolean> dispatching = ThreadLocal.withInitial(() -> false);
 
         @Override
@@ -44,7 +46,6 @@ abstract class Dispatcher {
         }
 
         private static final class Event {
-
             private final Object event;
             private final Iterator<Subscriber> subscribers;
 
