@@ -26,6 +26,30 @@ class ConcatenatedIterator<T> implements Iterator<T> {
 
     private Iterator<? extends T> iterator;
 
+    @CheckForNull
+    private Iterator<? extends Iterator<? extends T>> topMetaIterator;
+
+    @CheckForNull
+    private Deque<Iterator<? extends Iterator<? extends T>>> metaIterators;
+
+    ConcatenatedIterator(final Iterator<? extends Iterator<? extends T>> metaIterator) {
+        iterator = Collections.emptyIterator();
+        topMetaIterator = Preconditions.checkNotNull(metaIterator);
+    }
+
+    @CheckForNull
+    private Iterator<? extends Iterator<? extends T>> getTopMetaIterator() {
+        while (topMetaIterator == null || !topMetaIterator.hasNext()) {
+            if (metaIterators != null && !metaIterators.isEmpty()) {
+                topMetaIterator = metaIterators.removeFirst();
+            } else {
+                return null;
+            }
+        }
+
+        return topMetaIterator;
+    }
+
     @Override
     public boolean hasNext() {
         return true;
