@@ -48,5 +48,30 @@ public final class IOUtils {
         return toStringBuilder(r).toString();
     }
 
+    private static StringBuilder toStringBuilder(final Readable r) throws IOException {
+        final StringBuilder sb = new StringBuilder();
 
+        if (r instanceof Reader) {
+            copyReaderToBuilder((Reader) r, sb);
+        } else {
+            throw new RuntimeException("IOUTils paramenter should be instance of java.io.Reader");
+        }
+
+        return sb;
+    }
+
+    static long copyReaderToBuilder(final Reader from, final StringBuilder to) throws IOException {
+        Preconditions.checkNotNull(from);
+        Preconditions.checkNotNull(to);
+        char[] buf = new char[DEFAULT_BUF_SIZE];
+        int nRead;
+        long total = 0;
+
+        while ((nRead = from.read(buf)) != -1) {
+            to.append(buf, 0, nRead);
+            total += nRead;
+        }
+
+        return total;
+    }
 }
