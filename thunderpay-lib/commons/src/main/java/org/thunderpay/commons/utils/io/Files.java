@@ -12,8 +12,6 @@
 package org.thunderpay.commons.utils.io;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.attribute.FileAttribute;
 
 public final class Files {
     public static File createTempDirectory() {

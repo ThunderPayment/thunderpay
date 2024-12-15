@@ -17,7 +17,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>utils</module>
+        <module>commons</module>
+        <module>xmlloader</module>
     </modules>
 
     <properties>

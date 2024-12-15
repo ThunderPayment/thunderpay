@@ -14,12 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Set up JDK (Temurin distribution for JDK 11 or 17 or Java 23 as needed)
       - name: Set up JDK 23 (or replace with your version)
         uses: actions/setup-java@v4
         with:
-          java-version: '11'  # Or 17, or 23 as per your project needs
-          distribution: 'temurin'  # You can use 'adoptopenjdk', 'zulu', or 'corretto' as well
+          java-version: '23'
+          distribution: 'temurin'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
