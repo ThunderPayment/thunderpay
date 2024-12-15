@@ -48,4 +48,57 @@ public final class Iterators {
             }
         };
     }
+
+
+    public static<E> List<E> toUnmodifiableList(final Iterator<? extends E> elements) {
+        if (!elements.hasNext()) {
+            return Collections.emptyList();
+        }
+
+        final E first = elements.next();
+
+        if (!elements.hasNext()) {
+            return List.of(first);
+        } else {
+            final List<E> result = new ArrayList<>();
+            result.add(first);
+            elements.forEachRemaining(result::add);
+            return List.copyOf(result);
+        }
+    }
+
+    public static int size(final Iterator<?> iterator) {
+        int count = 0;
+
+        while (iterator.hasNext()) {
+            iterator.next();
+            count++;
+        }
+
+        return count;
+    }
+
+    public static<E> Stream<E> toStream(final Iterator<E> iterator) {
+        return StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, Spliterator.ORDERED), false);
+    }
+
+    public static boolean contains(final Iterator<?> iterator, @CheckForNull final Object element) {
+        if(element == null) {
+            while (iterator.hasNext()) {
+                if (iterator.next() == null) {
+                    return true;
+                }
+            }
+        } else {
+            while (iterator.hasNext()) {
+                if (element.equals(iterator.next())) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+    
+
 }
