@@ -1,3 +1,14 @@
+/**
+ * @file DefaultCatchableSubscriberExceptionsHandler.java
+ * @author Krisna Pranav
+ * @brief Default Catchable Subscriber Exceptions Handler
+ * @version 1.0
+ * @date 2024-11-25
+ *
+ * @copyright Copyright (c) 2024 ThunderPayment Developers, Krisna Pranav
+ *
+ */
+
 package org.thunderpay.commons.events;
 
 import java.lang.reflect.InvocationTargetException;
