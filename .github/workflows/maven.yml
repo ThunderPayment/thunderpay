@@ -8,17 +8,18 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up JDK 23
+      # Set up JDK (Temurin distribution for JDK 11 or 17 or Java 23 as needed)
+      - name: Set up JDK 23 (or replace with your version)
         uses: actions/setup-java@v4
         with:
-          java-version: '23'
-          distribution: 'temurin'  # Ensure correct distribution for JDK
+          java-version: '23'  # Or 17, or 23 as per your project needs
+          distribution: 'temurin'  # You can use 'adoptopenjdk', 'zulu', or 'corretto' as well
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
@@ -30,10 +31,3 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install -U
-
-      - name: Upload build artifacts (optional)
-        if: success()
-        uses: actions/upload-artifact@v3
-        with:
-          name: build-artifacts
-          path: target/*.jar
