@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '23'
-          distribution: 'adoptopenjdk'  # Ensure correct distribution for JDK
+          distribution: 'temurin'  # Ensure correct distribution for JDK
 
       - name: Cache Maven dependencies
         uses: actions/cache@v3
