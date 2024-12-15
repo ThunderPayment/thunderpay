@@ -20,7 +20,7 @@ public final class Resources {
         final ClassLoader loader = Objects.requireNonNullElse(Thread.currentThread().getContextClassLoader(), Resources.class.getClassLoader());
         final URL url = loader.getResource(resourceName);
         Preconditions.checkArgument(url != null, "resource %s not found", resourceName);
-        
+
         return url;
     }
 }
