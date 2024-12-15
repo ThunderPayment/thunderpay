@@ -105,4 +105,44 @@ public class EvictingQueue<E> implements Queue<E> {
 
         return true;
     }
+
+    @Override
+    public boolean removeAll(final Collection<?> c) {
+        return delegate.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(final Collection<?> c) {
+        return delegate.retainAll(c);
+    }
+
+    @Override
+    public void clear() {
+        delegate.clear();
+    }
+
+    @Override
+    public boolean offer(final E e) {
+        return add(e);
+    }
+
+    @Override
+    public E remove() {
+        return delegate.remove();
+    }
+
+    @Override
+    public E poll() {
+        return delegate.poll();
+    }
+
+    @Override
+    public E element() {
+        return delegate.element();
+    }
+
+    @Override
+    public E peek() {
+        return delegate.peek();
+    }
 }
