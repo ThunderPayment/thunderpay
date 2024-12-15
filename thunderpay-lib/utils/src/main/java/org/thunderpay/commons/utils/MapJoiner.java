@@ -32,6 +32,9 @@ public final class MapJoiner {
             final Map.Entry<?, ?> entry = iterator.next();
 
             if(isEntryKeyExist(entry)) {
+                sb.append(entry.getKey());
+                sb.append(separator);
+                sb.append(entry.getValue());
             }
 
             while(iterator.hasNext()) {
