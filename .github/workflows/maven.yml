@@ -18,7 +18,7 @@ jobs:
       - name: Set up JDK 23 (or replace with your version)
         uses: actions/setup-java@v4
         with:
-          java-version: '23'  # Or 17, or 23 as per your project needs
+          java-version: '11'  # Or 17, or 23 as per your project needs
           distribution: 'temurin'  # You can use 'adoptopenjdk', 'zulu', or 'corretto' as well
 
       - name: Cache Maven dependencies
