@@ -99,6 +99,34 @@ public final class Iterators {
 
         return true;
     }
-    
 
+    public static<T> T getLast(final Iterator<? extends T> iterator, final T defaultValue) {
+        return iterator.hasNext() ? getLast(iterator) : defaultValue;
+    }
+
+    public static<T> Iterator<T> concat(final Iterator<? extends Iterator<? extends T>> inputs) {
+        return new ConcatenatedIterator<>(inputs);
+    }
+
+    public static<T extends Object> T getOnlyElement(final Iterator<T> iterator) {
+        final T first = iterator.next();
+
+        if (!iterator.hasNext()) {
+            return first;
+        }
+
+        final StringBuilder sb = new StringBuilder().append("expected one element but was: <").append(first);
+
+        for(int i = 0; i < 4 && iterator.hasNext(); i++) {
+            sb.append(", ").append(iterator.next());
+        }
+
+        if(iterator.hasNext()) {
+            sb.append(", ...");
+        }
+
+        sb.append('>');
+
+        throw new IllegalArgumentException(sb.toString());
+    }
 }
