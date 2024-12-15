@@ -79,6 +79,14 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
         return result;
     }
 
+    public final T peek() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+
+        return uncheckedCastNullableTToT(next);
+    }
+
     static<T> T uncheckedCastNullableTToT(@CheckForNull final T t) {
         return t;
     }
