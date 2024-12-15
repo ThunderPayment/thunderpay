@@ -52,6 +52,37 @@ class ConcatenatedIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
+        while (!Preconditions.checkNotNull(iterator).hasNext()) {
+            topMetaIterator = getTopMetaIterator();
+
+            if (topMetaIterator == null) {
+                return false;
+            }
+
+            iterator = topMetaIterator.next();
+
+            if(iterator instanceof ConcatenatedIterator) {
+                @SuppressWarnings("unchecked")
+                final ConcatenatedIterator<T> topConcat = (ConcatenatedIterator<T>) iterator;
+
+                iterator = topConcat.iterator;
+
+                if (this.metaIterators == null) {
+                    this.metaIterators = new ArrayDeque<>();
+                }
+
+                this.metaIterators.addFirst(this.topMetaIterator);
+
+                if (topConcat.metaIterators != null) {
+                    while (!topConcat.metaIterators.isEmpty()) {
+                        Preconditions.checkNotNull(this.metaIterators).addFirst(Preconditions.checkNotNull(topConcat.metaIterators.removeLast()));
+                    }
+                }
+
+                this.topMetaIterator = topConcat.topMetaIterator;
+            }
+        }
+
         return true;
     }
 
