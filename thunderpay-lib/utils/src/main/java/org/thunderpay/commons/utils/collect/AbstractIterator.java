@@ -66,4 +66,20 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
 
         return false;
     }
+
+    @Override
+    public final T next() {
+        if (!hasNext()) {
+            throw new NoSuchElementException();
+        }
+
+        state = State.NOT_READY;
+        final T result = uncheckedCastNullableTToT(next);
+        next = null;
+        return result;
+    }
+
+    static<T> T uncheckedCastNullableTToT(@CheckForNull final T t) {
+        return t;
+    }
 }
