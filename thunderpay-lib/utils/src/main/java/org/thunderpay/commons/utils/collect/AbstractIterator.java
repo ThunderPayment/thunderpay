@@ -47,7 +47,7 @@ public abstract class AbstractIterator<T> implements Iterator<T> {
         Preconditions.checkState(state != State.FAILED, "AbstractIterator failed");
         switch (state) {
             case DONE:
-                return false:
+                return false;
             case READY:
                 return true;
             default:
