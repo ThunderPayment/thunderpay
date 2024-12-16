@@ -48,4 +48,14 @@ public class HealthyResult implements Result {
     public long getTime() {
         return time;
     }
+
+    @Override
+    public Map<String, Object> getDetails() {
+        return new HashMap<>(details);
+    }
+
+    @Override
+    public String toString() {
+        return "HealthyResult{" + "message='" + message + '\'' + ", time=" + time +  ", details=" + details +  '}';
+    }
 }
