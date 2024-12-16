@@ -19,6 +19,7 @@
     <modules>
         <module>commons</module>
         <module>xmlloader</module>
+        <module>metric-api</module>
     </modules>
 
     <properties>
