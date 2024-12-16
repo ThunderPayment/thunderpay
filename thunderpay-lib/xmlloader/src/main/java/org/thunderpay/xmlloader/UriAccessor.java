@@ -26,4 +26,23 @@ public class UriAccessor {
     private static final String URI_SCHEME_FOR_ARCHIVE_FILE = "jar:file";
     private static final String URI_SCHEME_FOR_CLASSPATH = "jar";
     private static final String URI_SCHEME_FOR_FILE = "file";
+
+    public static URL toURL(final String uri) throws IOException, URISyntaxException {
+        return toURL(new URI(uri));
+    }
+
+    public static URL toURL(final URI inputURI) throws IOException, URISyntaxException {
+        final String scheme = inputURI.getScheme();
+        final URI uri;
+
+        if (scheme == null) {
+            
+        } else if (scheme.equals(URI_SCHEME_FOR_FILE)) {
+
+        } else {
+            uri = inputURI;
+        }
+        
+        return uri.toURL();
+    }
 }
