@@ -54,4 +54,9 @@ public class UnhealthyResult implements Result {
     public Map<String, Object> getDetails() {
         return new HashMap<>(details);
     }
+
+    @Override
+    public String toString() {
+        return "UnhealthyResult{" + "message='" + message + '\'' + ", error=" + error + ", time=" + time + ", details=" + details + '}';
+    }
 }
