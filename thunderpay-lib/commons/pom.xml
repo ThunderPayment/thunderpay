@@ -11,8 +11,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>commons</artifactId>
-    <name>thunderpay-utils</name>
+    <artifactId>thunderpay-commons</artifactId>
     <packaging>jar</packaging>
 
     <properties>
