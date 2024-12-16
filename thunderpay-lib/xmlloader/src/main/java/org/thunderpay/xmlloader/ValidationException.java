@@ -16,7 +16,7 @@ import java.io.PrintStream;
 public class ValidationException extends Exception {
     private final ValidationErrors errors;
 
-    ValidationException(final ValidationError errors) {
+    ValidationException(final ValidationErrors errors) {
         this.errors = errors;
     }
 
