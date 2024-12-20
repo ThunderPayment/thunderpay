@@ -31,4 +31,19 @@ public class NoOpMeter implements Meter {
     public double getFifteenMinuteRate() {
         return 0;
     }
+
+    @Override
+    public double getFiveMinuteRate() {
+        return 0;
+    }
+
+    @Override
+    public double getMeanRate() {
+        return 0;
+    }
+
+    @Override
+    public double getOneMinuteRate() {
+        return 0;
+    }
 }
