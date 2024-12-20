@@ -22,7 +22,7 @@ public class NoOpHistogram implements Histogram {
     public void update(final long value) {
         count.increment();
     }
-    
+
     @Override
     public long getCount() {
         return count.sum();
