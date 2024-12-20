@@ -60,4 +60,29 @@ public class NoOpMetricRegistry implements MetricRegistry {
         timers.put(name, timer);
         return timer;
     }
+
+    @Override
+    public Map<String, Gauge<?>> getGauges() {
+        return new HashMap<>(gauges);
+    }
+
+    @Override
+    public Map<String, Counter> getCounters() {
+        return new HashMap<>(counters);
+    }
+
+    @Override
+    public Map<String, Histogram> getHistograms() {
+        return new HashMap<>(histograms);
+    }
+
+    @Override
+    public Map<String, Meter> getMeters() {
+        return new HashMap<>(meters);
+    }
+
+    @Override
+    public Map<String, Timer> getTimers() {
+        return new HashMap<>(timers);
+    }
 }
