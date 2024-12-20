@@ -36,14 +36,14 @@ public class NoOpMetricRegistry implements MetricRegistry {
 
     @Override
     public<T> Gauge<T> gauge(final String name, final Gauge<T> gauge) {
-        gauge.put(name, gauge);
+        gauges.put(name, gauge);
         return gauge;
     }
 
     @Override
     public Meter meter(final String name) {
         final Meter meter = new NoOpMeter();
-        meters.put(name, eter);
+        meters.put(name, meter);
         return meter;
     }
 
@@ -59,6 +59,32 @@ public class NoOpMetricRegistry implements MetricRegistry {
         final Timer timer = new NoOpTimer();
         timers.put(name, timer);
         return timer;
+    }
+
+    @Override
+    public boolean remove(final String name) {
+        if (gauges.remove(name) != null) {
+            return true;
+        } else if (counters.remove(name) != null) {
+            return true;
+        } else if (histograms.remove(name) != null) {
+            return true;
+        } else if (meters.remove(name) != null) {
+            return true;
+        } else {
+            return timers.remove(name) != null;
+        }
+    }
+
+    @Override
+    public Map<String, ?> getMetrics() {
+        final Map<String, Object> metrics = new HashMap<>();
+        metrics.putAll(gauges);
+        metrics.putAll(counters);
+        metrics.putAll(histograms);
+        metrics.putAll(meters);
+        metrics.putAll(timers);
+        return metrics;
     }
 
     @Override
