@@ -100,4 +100,24 @@ public class TimeSpan {
     public int hashCode() {
         return 31 + (int) (millis ^ (millis >>> 32));
     }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        final TimeSpan other = (TimeSpan) obj;
+
+        return millis == other.millis;
+    }
+
 }
