@@ -11,11 +11,7 @@
 
 package org.thunderpay.config;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.WildcardType;
-import java.sql.Array;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -73,6 +69,57 @@ class Bully {
 
             if (clazz.isArray()) {
             }
+        }
+    }
+
+    private boolean isAssignableFrom(final Type targetType, final Class<?> assignedClass) {
+        if (targetType instanceof Class) {
+            return ((Class<?>) targetType).isAssignableFrom(assignedClass);
+        } else if (targetType instanceof WildcardType) {
+            final WildcardType wildcardType = (WildcardType) targetType;
+            for (final Type upperBoundType : wildcardType.getUpperBounds()) {
+                if (!Object.class.equals(upperBoundType)) {
+                    if ((upperBoundType instanceof Class<?>) && !((Class<?>) upperBoundType).isAssignableFrom(assignedClass)) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private Class<?> coerceClass(final Type type, final WildcardType wildcardType, final String value) {
+        if (value == null) {
+            return null;
+        } else {
+            try {
+                final Class<?> clazz = Class.forName(value);
+
+                if (!isAssignableFrom(wildcardType, clazz)) {
+                    throw new IllegalArgumentException("Specified class " + clazz + " is not compatible with required type " + type);
+                }
+                return clazz;
+            } catch (final Exception ex) {
+                throw new IllegalArgumentException(ex);
+            }
+        }
+    }
+
+    private Object coerceArray(final Class<?> elemType, final String value, final Separator separator) {
+        if (value == null) {
+            return null;
+        } else if (value.length() == 0) {
+            return Array.newInstance(elemType, 0);
+        } else {
+            final String[] tokens = value.split(separator == null ? Separator.DEFAULT : separator.value());
+            final Object targetArray = Array.newInstance(elemType, tokens.length);
+
+            for (int idx = 0; idx < tokens.length; idx++) {
+                Array.set(targetArray, idx, coerce(elemType, tokens[idx]));
+            }
+
+            return targetArray;
         }
     }
 
