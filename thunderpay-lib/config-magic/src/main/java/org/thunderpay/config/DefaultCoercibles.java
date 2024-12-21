@@ -102,8 +102,29 @@ final class DefaultCoercibles {
 
             Coercer<Object> coercer = null;
 
+            try {
+                final Constructor<?> ctor = type.getConstructor(Object.class);
+
+                coercer = new Coercer<Object>() {
+                    public Object coerce(final String value) {
+                        try {
+                            return ctor.newInstance(value);
+                        } catch (final Exception e) {
+                            throw convertException(e);
+                        }
+                    }
+                };
+            } catch (final NoSuchMethodException nsme) {}
+
             coercerMap.put(type, coercer);
             return coercer;
+        }
+    };
+
+    static final Coercer<Boolean> BOOLEAN_COERCER = new Coercer<Boolean>() {
+        @SuppressFBWarnings
+        public Boolean coerce(final String value) {
+            return value != null ? Boolean.valueOf(value) : null;
         }
     };
 
