@@ -48,4 +48,42 @@ public class DataAmount {
         this.unit = unit;
         this.numBytes = unit.getFactor() * value;
     }
+
+    public DataAmount(final long rawBytes) {
+        value = numBytes = rawBytes;
+        unit = DataAmountUnit.BYTE;
+    }
+
+    public long getValue() {
+        return value;
+    }
+
+    public DataAmountUnit getUnit() {
+        return unit;
+    }
+
+    public long getNumberOfBytes() {
+        return numBytes;
+    }
+
+    public DataAmount convertTo(final DataAmountUnit newUnit) {
+        return new DataAmount(numBytes / newUnit.getFactor(), newUnit);
+    }
+
+    @Override
+    public String toString() {
+        return value + unit.getSymbol();
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + (int) (numBytes ^ (numBytes >>> 32));
+        result = prime * result * unit.hashCode();
+        result = prime * result + (int) (value ^ (value >>> 32));
+        return result;
+    }
+
+    
 }
