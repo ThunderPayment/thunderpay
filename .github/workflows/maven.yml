@@ -27,11 +27,3 @@ jobs:
           export PATH="$JAVA_HOME/bin:$PATH"
           java -version
           mvn -version
-
-      - name: Build and install parent POM
-        run: |
-          mvn clean install
-
-      - name: Build submodules
-        run: |
-          mvn clean install
