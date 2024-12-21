@@ -30,7 +30,6 @@ jobs:
 
       - name: Build and install parent POM
         run: |
-          cd thunderpay
           mvn clean install
 
       - name: Build submodules
