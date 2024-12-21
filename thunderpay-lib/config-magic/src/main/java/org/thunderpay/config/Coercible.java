@@ -12,5 +12,6 @@
 package org.thunderpay.config;
 
 public interface Coercible<T> {
-    Coercer<Object> accept(Class<?> clazz);
+
+    Coercer<T> accept(Class<?> clazz);
 }
