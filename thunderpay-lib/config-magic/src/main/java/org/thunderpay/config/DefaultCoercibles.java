@@ -92,6 +92,21 @@ final class DefaultCoercibles {
         }
     };
 
+    static final Coercible<?> OBJECT_CTOR_COERCIBLE = new Coercible<Object>() {
+        private final Map<Class<?>, Coercer<Object>> coercerMap = new HashMap<Class<?>, Coercer<Object>>();
+
+        public Coercer<Object> accept(final Class<?> type) {
+            if (coercerMap.containsKey(type)) {
+                return coercerMap.get(type);
+            }
+
+            Coercer<Object> coercer = null;
+
+            coercerMap.put(type, coercer);
+            return coercer;
+        }
+    };
+
     private DefaultCoercibles() {}
 
     public static final RuntimeException convertException(final Throwable t) {
