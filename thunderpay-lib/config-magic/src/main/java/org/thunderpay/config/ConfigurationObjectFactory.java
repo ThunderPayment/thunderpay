@@ -122,7 +122,6 @@ public class ConfigurationObjectFactory {
                 }
                 value = config.getString(propertyName);
 
-                // First value found wins
                 if (value != null) {
                     logger.info("Assigning value [{}] for [{}] on [{}#{}()]",
                             value, propertyName, method.getDeclaringClass().getName(), method.getName());
@@ -155,19 +154,18 @@ public class ConfigurationObjectFactory {
             if (hasDefault) {
                 value = method.getAnnotation(Default.class).value();
 
-                logger.info("Assigning default value [{}] for {} on [{}#{}()]",
+                logger.info("value [{}] for {} on [{}#{}()]",
                         value, propertyNames, method.getDeclaringClass().getName(), method.getName());
             } else if (hasDefaultNull) {
-                logger.info("Assigning null default value for {} on [{}#{}()]",
+                logger.info("value for {} on [{}#{}()]",
                         propertyNames, method.getDeclaringClass().getName(), method.getName());
             } else {
-                // Final try: Is the method is actually callable?
                 if (!Modifier.isAbstract(method.getModifiers())) {
                     useMethod = true;
-                    logger.info("Using method itself for {} on [{}#{}()]",
+                    logger.info("{} on [{}#{}()]",
                             propertyNames, method.getDeclaringClass().getName(), method.getName());
                 } else {
-                    throw new IllegalArgumentException(String.format("No value present for '%s' in [%s]",
+                    throw new IllegalArgumentException(String.format("'%s' in [%s]",
                             prettyPrint(propertyNames, mappedReplacements),
                             method.toGenericString()));
                 }
@@ -183,6 +181,152 @@ public class ConfigurationObjectFactory {
                 final Object finalValue = bully.coerce(method.getGenericReturnType(), value, method.getAnnotation(Separator.class));
                 return bbBuilder.method(ElementMatchers.is(method)).intercept(FixedValue.value(finalValue));
             }
+        }
+    }
+
+    private String applyReplacements(String propertyName, final Map<String, String> mappedReplacements) {
+        for (final Entry<String, String> entry : mappedReplacements.entrySet()) {
+            final String token = makeToken(entry.getKey());
+            final String replacement = entry.getValue();
+            propertyName = propertyName.replace(token, replacement);
+        }
+        return propertyName;
+    }
+
+    private <T> Builder<T> buildParameterized(final Builder<T> bbBuilder, final Method method, final Config annotation) {
+        String defaultValue = null;
+
+        final boolean hasDefault = method.isAnnotationPresent(Default.class);
+        final boolean hasDefaultNull = method.isAnnotationPresent(DefaultNull.class);
+
+        if (hasDefault && hasDefaultNull) {
+            throw new IllegalArgumentException(String.format("[%s]", method.toGenericString()));
+        }
+
+        if (hasDefault) {
+            defaultValue = method.getAnnotation(Default.class).value();
+        } else if (!hasDefaultNull) {
+            throw new IllegalArgumentException(String.format("'%s' in [%s]",
+                    prettyPrint(annotation.value(), null),
+                    method.toGenericString()));
+        }
+
+        final Annotation[][] parameterAnnotations = method.getParameterAnnotations();
+        final List<String> paramTokenList = new ArrayList<String>();
+        for (final Annotation[] parameterTab : parameterAnnotations) {
+            for (final Annotation parameter : parameterTab) {
+                if (parameter.annotationType().equals(Param.class)) {
+                    final Param paramAnnotation = (Param) parameter;
+                    paramTokenList.add(makeToken(paramAnnotation.value()));
+                    break;
+                }
+            }
+        }
+
+        if (paramTokenList.size() != method.getParameterTypes().length) {
+            throw new RuntimeException(String.format("annotations",
+                    method.toGenericString()));
+        }
+
+        final Object bulliedDefaultValue = bully.coerce(method.getGenericReturnType(), defaultValue, method.getAnnotation(Separator.class));
+        final String[] annotationValues = annotation.value();
+
+        if (annotationValues.length == 0) {
+            throw new IllegalArgumentException("Method " +
+                    method.toGenericString() +
+                    " declares config annotation but no field name!");
+        }
+
+        final ConfigMagicMethodInterceptor invocationHandler = new ConfigMagicMethodInterceptor(method,
+                config,
+                annotationValues,
+                paramTokenList,
+                bully,
+                bulliedDefaultValue);
+        return bbBuilder.method(ElementMatchers.is(method)).intercept(InvocationHandlerAdapter.of(invocationHandler));
+    }
+
+    private String makeToken(final String temp) {
+        return "${" + temp + "}";
+    }
+
+    private String prettyPrint(final String[] values, final Map<String, String> mappedReplacements) {
+        if (values == null || values.length == 0) {
+            return "";
+        }
+        final StringBuilder sb = new StringBuilder("[");
+
+        for (int i = 0; i < values.length; i++) {
+            sb.append(values[i]);
+            if (i < (values.length - 1)) {
+                sb.append(", ");
+            }
+        }
+        sb.append(']');
+        if (mappedReplacements != null && !mappedReplacements.isEmpty()) {
+            sb.append(" translated to [");
+            for (int i = 0; i < values.length; i++) {
+                sb.append(applyReplacements(values[i], mappedReplacements));
+                if (i < (values.length - 1)) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("]");
+        }
+
+        return sb.toString();
+    }
+
+    private static final class ConfigMagicMethodInterceptor implements InvocationHandler {
+
+        private final Method method;
+        private final ConfigSource config;
+        private final String[] properties;
+        private final Bully bully;
+        private final Object defaultValue;
+        private final List<String> paramTokenList;
+        private transient String toStringValue = null;
+
+        private ConfigMagicMethodInterceptor(final Method method, final ConfigSource config, final String[] properties, final List<String> paramTokenList, final Bully bully, final Object defaultValue) {
+            this.method = method;
+            this.config = config;
+            this.properties = properties;
+            this.paramTokenList = paramTokenList;
+            this.bully = bully;
+            this.defaultValue = defaultValue;
+        }
+
+        @Override
+        public Object invoke(final Object o,
+                             final Method method,
+                             final Object[] args) {
+            for (String property : properties) {
+                if (args.length == paramTokenList.size()) {
+                    for (int i = 0; i < args.length; ++i) {
+                        property = property.replace(paramTokenList.get(i), String.valueOf(args[i]));
+                    }
+                    final String value = config.getString(property);
+                    if (value != null) {
+                        logger.info("Assigning value [{}] for [{}] on [{}#{}()]",
+                                value, property, method.getDeclaringClass().getName(), method.getName());
+                        return bully.coerce(method.getGenericReturnType(), value, method.getAnnotation(Separator.class));
+                    }
+                } else {
+                    throw new IllegalStateException("Argument list doesn't match @Param list");
+                }
+            }
+            logger.info("Assigning default value [{}] for {} on [{}#{}()]",
+                    defaultValue, properties, method.getDeclaringClass().getName(), method.getName());
+            return defaultValue;
+        }
+
+        @Override
+        public String toString() {
+            if (toStringValue == null) {
+                toStringValue = method.getName() + ": " + super.toString();
+            }
+
+            return toStringValue;
         }
     }
 }
