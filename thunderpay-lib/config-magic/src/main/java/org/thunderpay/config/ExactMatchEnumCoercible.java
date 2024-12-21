@@ -14,7 +14,7 @@ package org.thunderpay.config;
 import java.lang.reflect.Method;
 
 public class ExactMatchEnumCoercible implements Coercible<Object> {
-    public Coercible<Object> accept(final Class<?> clazz) {
+    public Coercer<Object> accept(final Class<?> clazz) {
         if (!clazz.isEnum()) {
             return null;
         }
