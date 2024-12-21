@@ -12,5 +12,6 @@
 package org.thunderpay.config;
 
 public interface Coercer<T> {
+
     T coerce(String value);
 }
