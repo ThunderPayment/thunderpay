@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI with Maven on macOS
 
 on:
   push:
@@ -11,26 +11,28 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Install Java
+      - name: Install Java and Maven
         run: |
-          sudo apt-get update
-          sudo apt-get install -y openjdk-11-jdk
-      - name: Set JAVA_HOME
-        run: echo "JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64" >> $GITHUB_ENV
-
-      - name: Install Maven
-        run: |
-          sudo apt-get install -y maven
+          brew update
+          brew install openjdk@11
+          brew install maven
+          sudo ln -sfn /usr/local/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+          export JAVA_HOME=$(/usr/libexec/java_home -v 11)
+          export PATH="$JAVA_HOME/bin:$PATH"
+          java -version
           mvn -version
 
-      - name: Maven Clean Install
-        run: mvn clean install -U
+      - name: Build and install parent POM
+        run: |
+          cd thunderpay
+          mvn clean install
 
-      - name: Maven Package
-        run: mvn package
+      - name: Build submodules
+        run: |
+          mvn clean install
