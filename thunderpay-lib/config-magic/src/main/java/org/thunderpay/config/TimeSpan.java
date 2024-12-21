@@ -67,4 +67,37 @@ public class TimeSpan {
         this.unit = unit;
         this.millis = TimeUnit.MILLISECONDS.convert(period, unit);
     }
+
+    public long getMillis() {
+        return millis;
+    }
+
+    public long getPeriod() {
+        return period;
+    }
+
+    public TimeUnit getUnit() {
+        return unit;
+    }
+
+    @Override
+    public String toString() {
+        switch(unit) {
+            case SECONDS:
+                return period + "s";
+            case MINUTES:
+                return period + "m";
+            case HOURS:
+                return period + "h";
+            case DAYS:
+                return period + "d";
+            default:
+                return period + "ms";
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return 31 + (int) (millis ^ (millis >>> 32));
+    }
 }
