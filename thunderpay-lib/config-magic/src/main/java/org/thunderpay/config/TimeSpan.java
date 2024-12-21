@@ -42,4 +42,29 @@ public class TimeSpan {
     private final long period;
     private final TimeUnit unit;
     private final long millis;
+
+    public TimeSpan(final String spec) {
+        final Matcher m = SPLIT.matcher(spec);
+        if (!m.matches()) {
+            throw new IllegalArgumentException(String.format("%s is not a valid time spec", spec));
+        }
+
+        final String number = m.group(1);
+        final String type = m.group(2);
+
+        period = Long.parseLong(number);
+        unit = UNITS.get(type);
+
+        if(unit == null) {
+            throw new IllegalArgumentException(String.format("%s is not a valid time unit in %s", type, spec));
+        }
+
+        millis = TimeUnit.MILLISECONDS.convert(period, unit);
+    }
+
+    public TimeSpan(final long period, final TimeUnit unit) {
+        this.period = period;
+        this.unit = unit;
+        this.millis = TimeUnit.MILLISECONDS.convert(period, unit);
+    }
 }
