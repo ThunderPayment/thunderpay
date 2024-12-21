@@ -9,8 +9,21 @@ on:
       - "main"
 
 jobs:
-  build:
+  build-ubuntu:
+    runs-on: ubuntu-latest
 
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Install Java and Maven
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-11-jdk maven
+          java -version
+          mvn -version
+
+  build-macos:
     runs-on: macos-latest
 
     steps:
