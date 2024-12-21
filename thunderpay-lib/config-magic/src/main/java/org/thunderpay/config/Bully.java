@@ -68,8 +68,31 @@ class Bully {
             final Class<?> clazz = (Class<?>) type;
 
             if (clazz.isArray()) {
+                return coerceArray(clazz.getComponentType(), value, separator);
+            } else if (Class.class.equals(clazz)) {
+                return coerceClass(type, null, value);
+            } else {
+                return coerce(clazz, value);
+            }
+
+        } else if (type instanceof ParameterizedType) {
+            final ParameterizedType parameterizedType = (ParameterizedType) type;
+            final Type rawType = parameterizedType.getRawType();
+
+            if (rawType instanceof Class<?>) {
+                final Type[] args = parameterizedType.getActualTypeArguments();
+
+                if (args != null && args.length == 1) {
+                    if (args[0] instanceof Class<?>) {
+                        return coerceCollection((Class<?>) rawType, (Class<?>) args[0], value, separator);
+                    } else if (args[0] instanceof WildcardType) {
+                        return coerceClass(type, (WildcardType) args[0], value);
+                    }
+                }
             }
         }
+
+        throw new IllegalStateException(String.format("%s", type, value));
     }
 
     private boolean isAssignableFrom(final Type targetType, final Class<?> assignedClass) {
