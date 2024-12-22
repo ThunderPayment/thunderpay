@@ -21,6 +21,7 @@
         <module>xmlloader</module>
         <module>metric-api</module>
         <module>config-magic</module>
+        <module>metrics</module>
     </modules>
 
     <properties>
