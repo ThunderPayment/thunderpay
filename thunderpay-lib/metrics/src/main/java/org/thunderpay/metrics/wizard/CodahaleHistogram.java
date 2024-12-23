@@ -11,14 +11,15 @@
 
 package org.thunderpay.metrics.wizard;
 
-import org.thunderpay.metric.api.Counting;
 import org.thunderpay.metric.api.Histogram;
+import com.codahale.metrics.Counting;
 import com.codahale.metrics.Metric;
+import com.codahale.metrics.Sampling;
 import com.codahale.metrics.Snapshot;
 import com.codahale.metrics.UniformSnapshot;
-import org.thunderpay.metric.api.Sampling;
 
 public class CodahaleHistogram implements Metric, Sampling, Counting {
+
     private final Histogram histogram;
 
     public CodahaleHistogram(final Histogram histogram) {
@@ -28,5 +29,10 @@ public class CodahaleHistogram implements Metric, Sampling, Counting {
     @Override
     public long getCount() {
         return histogram.getCount();
+    }
+
+    @Override
+    public Snapshot getSnapshot() {
+        return new UniformSnapshot(histogram.getSnapshot().getValues());
     }
 }
