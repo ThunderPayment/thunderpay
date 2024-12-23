@@ -76,4 +76,41 @@ public class CodahaleMetricRegistry extends MetricRegistry {
     public Meter meter(final String name, final MetricSupplier<Meter> supplier) {
         throw new UnsupportedOperationException("Register via the metric reigster instead");
     }
+
+    @Override
+    public Timer timer(final String name) {
+        throw new UnsupportedOperationException("Register via the metric reigster instead");
+    }
+
+    @Override
+    public Timer timer(final String name, final MetricSupplier<Timer> supplier) {
+        throw new UnsupportedOperationException("Register via the metric reigster instead");
+    }
+
+    @Override
+    public<T extends Gauge> T gauge(final String name) {
+        throw new UnsupportedOperationException("Register via the metric reigster instead");
+    }
+
+    @Override
+    public<T extends Gauge> T gauge(final String name, final MetricSupplier<T> supplier) {
+        throw new UnsupportedOperationException("Register via the metric reigster instead");
+    }
+
+    @Override
+    public boolean remove(final String name) {
+        throw new UnsupportedOperationException("UnRegister via the metric reigster instead");
+    }
+
+    @Override
+    public void removeMatching(final MetricFilter filter) {
+        throw new UnsupportedOperationException("UnRegister via the metric reigster instead");
+    }
+
+    @Override
+    @SuppressWarnings("rawtypes")
+    public SortedMap<String, Gauge> getGauges() {
+        return getGauges(MetricFilter.ALL);
+    }
+    
 }
