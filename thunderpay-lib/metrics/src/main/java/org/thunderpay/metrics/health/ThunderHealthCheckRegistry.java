@@ -64,4 +64,21 @@ public class ThunderHealthCheckRegistry implements HealthCheckRegistry {
             return new UnhealthyResultBuilder().setError(e).createUnhealthyResult();
         }
     }
+
+    @Override
+    public void register(final String name, final HealthCheck healthCheck) {
+        synchronized (this) {
+            if (healthChecks.containsKey(name)) {
+                throw new IllegalArgumentException("check named" + name + "already exists!");
+            }
+
+            healthChecks.put(name, healthCheck);
+        }
+    }
+
+    private void logUnHealthyResult(final String healthCheckName, final Result healthCheckResult) {
+        if (!healthCheckResult.isHealthy()) {
+            logger.warn("check: {} failed: {}", healthCheckName, healthCheckResult.toString());
+        }
+    }
 }
