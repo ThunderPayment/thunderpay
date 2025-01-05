@@ -15,6 +15,7 @@ import org.thunderpay.health.api.HealthCheck;
 import org.thunderpay.health.api.HealthCheckRegistry;
 import org.thunderpay.health.api.Result;
 import org.thunderpay.health.impl.UnhealthyResultBuilder;
+
 import java.util.Collections;
 import java.util.NoSuchElementException;
 import java.util.Set;
