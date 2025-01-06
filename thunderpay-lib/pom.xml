@@ -21,6 +21,7 @@
         <module>commons</module>
         <module>concurrent</module>
         <module>xmlloader</module>
+        <module>skeleton</module>
         <module>config-magic</module>
         <module>metric-api</module>
         <module>metrics</module>
