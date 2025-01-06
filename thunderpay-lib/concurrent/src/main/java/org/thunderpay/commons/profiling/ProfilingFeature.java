@@ -74,4 +74,12 @@ public class ProfilingFeature {
 
         this.profilingBits = tmp;
     }
+
+    public boolean isDefined(final ProfilingFeatureType type) {
+        return (profilingBits & type.getMask()) == type.getMask();
+    }
+
+    public boolean isProfilingJAXRS() {
+        return isDefined(ProfilingFeatureType.JAXRS);
+    }
 }
