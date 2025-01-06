@@ -23,10 +23,6 @@ jobs:
           java -version
           mvn -version
 
-      - name: Compile
-        run: |
-          mvn compile
-
   build-macos:
     runs-on: macos-latest
 
