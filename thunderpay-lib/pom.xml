@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>clock</module>
         <module>commons</module>
         <module>xmlloader</module>
         <module>config-magic</module>
