@@ -58,4 +58,20 @@ public class ProfilingFeature {
         this.profilingBits = tmp;
     }
 
+    public ProfilingFeature(final String features) {
+        int tmp = 0;
+        final Matcher matcher = featurePattern.matcher(features);
+
+        while(matcher.find()) {
+            final String cur = matcher.group(1);
+            try {
+                final ProfilingFeatureType featureType = ProfilingFeatureType.valueOf(cur);
+                tmp |= featureType.getMask();
+            } catch (final IllegalArgumentException e) {
+
+            }
+        }
+
+        this.profilingBits = tmp;
+    }
 }
