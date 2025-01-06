@@ -16,17 +16,19 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
 public interface Clock {
-    ///  @return DateTimeZone
-    public DateTime getTime(DateTimeZone tz);
+    ///  @brief: getNow
+    /// @return: DateTimeZone
+    public DateTime getNow(DateTimeZone tz);
 
-    ///  @brief: get UTC now.
+    ///  @brief: getUTCNow
+    ///  @return: DateTime
     public DateTime getUTCNow();
 
-    ///  @brief get today UTC
+    ///  @brief: getUTCToday
+    ///  @return: LocalDate
     public LocalDate getUTCToday();
 
-    /// @return DateTimeZone
+    ///  @brief: getToday
+    ///  @return: timeZone
     public LocalDate getToday(DateTimeZone timeZone);
-
-
 }
