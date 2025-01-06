@@ -1,7 +1,7 @@
 /**
- * @file AllowConcurrentEvents.java
+ * @file Clock.java
  * @author Krisna Pranav
- * @brief Allow Concurrent Events
+ * @brief Clock
  * @version 1.0
  * @date 2024-11-25
  *
