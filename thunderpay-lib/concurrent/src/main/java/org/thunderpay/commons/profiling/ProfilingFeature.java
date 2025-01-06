@@ -23,5 +23,39 @@ public class ProfilingFeature {
     private static final int PLUGIN_MASK = 0x20;
     private static final int DAO_CONNECTION_MASK = 0x40;
 
+    public enum ProfilingFeatureType {
+        JAXRS(JAXRS_MASK),
+        API(API_MASK),
+        DAO(DAO_MASK),
+        DAO_DETAILS(DAO_MASK, DAO_DETAILS_MASK),
+        DAO_CONNECTION(DAO_CONNECTION_MASK),
+        GLOCK(GLOCK_MASK),
+        PLUGIN(PLUGIN_MASK);
+
+        private final int mask;
+
+        ProfilingFeatureType(final int... masks) {
+            int tmp = 0;
+            for (final int mask1 : masks) {
+                tmp |= mask1;
+            }
+            this.mask = tmp;
+        }
+        public int getMask() {
+            return mask;
+        }
+    }
+
+    private final Pattern featurePattern = Pattern.compile("\\s*,?\\s*((?:[A-Z])+(?:_)?+(?:[A-Z])*)");
+    private final int profilingBits;
+
+    public ProfilingFeature() {
+        int tmp = 0;
+        for (final ProfilingFeatureType cur : ProfilingFeatureType.values()) {
+            tmp |= cur.getMask();
+        }
+
+        this.profilingBits = tmp;
+    }
 
 }
