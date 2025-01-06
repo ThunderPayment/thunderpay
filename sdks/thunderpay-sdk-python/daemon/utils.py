@@ -158,3 +158,32 @@ class CastingDataclass:
                 and field.default_factory is dataclasses.MISSING
             ):
                 setattr(self, field.name, field.type(value))
+                
+def load_json_dict(s, error_message):
+    json_dict = s
+    if isinstance(s, str):
+        try:
+            json_dict = json.loads(s)
+        except json.JSONDecodeError as e:
+            raise Exception(error_message) from e
+    return json_dict
+
+
+def is_int(v):
+    try:
+        int(v)
+        return True
+    except Exception:
+        return False
+
+
+def try_cast_num(v):
+    if is_int(v):
+        return int(v)
+    return v
+
+
+def get_func_name(func):
+    if hasattr(func, "__wrapped__"):
+        func = func.__wrapped__
+    return func.__name__
