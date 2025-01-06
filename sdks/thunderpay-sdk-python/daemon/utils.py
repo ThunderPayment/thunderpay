@@ -116,3 +116,23 @@ def hide_logging_errors(enable):
     yield
     if enable:
         logging.disable(logging.NOTSET)
+        
+@dataclass
+class JsonResponse:
+    id: int | None = None
+    code: int | None = None
+    error: str | None = None
+    result: Any | None = None
+
+    def send(self):
+        if self.result is not None and self.error is not None:
+            raise ValueError(f"result={self.result} and error={self.error} cannot be both set")
+        if self.error is not None:
+            return self.send_error_response()
+        return self.send_ok_response()
+
+    def send_error_response(self):
+        return web.json_response({"jsonrpc": "2.0", "error": {"code": self.code, "message": self.error}, "id": self.id})
+
+    def send_ok_response(self):
+        return web.json_response({"jsonrpc": "2.0", "result": self.result, "id": self.id})
