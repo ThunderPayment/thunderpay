@@ -68,10 +68,21 @@ def authenticate(f):
     async def wrapper(daemon, request):
         auth = request.headers.get("Authorization")
         user, password = decode_auth(auth)
-        
         if not (user == daemon.LOGIN and password == daemon.PASSWORD):
-        
-        
-        return wrapper
+            return JsonResponse(code=-32600, error="Unauthorized").send()
+        return await f(daemon, request)
+
+    return wrapper
+
+
+def cached(f):
+    def wrapper(*args, **kwargs):
+        if hasattr(f, "cache"):
+            return f.cache
+        result = f(*args, **kwargs)
+        f.cache = result
+        return result
+
+    return wrapper
 
         
