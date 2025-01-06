@@ -17,3 +17,16 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 
+public class WrappedRunnableFuture<V> implements Future<V> {
+    private final WrappedRunnable runnable;
+    private final Future<V> delegate;
+
+    private WrappedRunnableFuture(final WrappedRunnable runnable, final Future<V> delegate) {
+        this.runnable = runnable;
+        this.delegate = delegate;
+    }
+
+    public static<V> Future<V> wrap(final WrappedRunnable runnable, final Future<V> delegate) {
+        return new WrappedRunnableFuture<V>(runnable, delegate);
+    }
+}
