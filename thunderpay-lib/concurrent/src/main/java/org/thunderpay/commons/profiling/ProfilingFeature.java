@@ -15,6 +15,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ProfilingFeature {
+
     private static final int JAXRS_MASK = 0x1;
     private static final int API_MASK = 0x2;
     private static final int DAO_MASK = 0x4;
@@ -47,6 +48,7 @@ public class ProfilingFeature {
     }
 
     private final Pattern featurePattern = Pattern.compile("\\s*,?\\s*((?:[A-Z])+(?:_)?+(?:[A-Z])*)");
+
     private final int profilingBits;
 
     public ProfilingFeature() {
@@ -54,24 +56,21 @@ public class ProfilingFeature {
         for (final ProfilingFeatureType cur : ProfilingFeatureType.values()) {
             tmp |= cur.getMask();
         }
-
         this.profilingBits = tmp;
     }
 
     public ProfilingFeature(final String features) {
         int tmp = 0;
         final Matcher matcher = featurePattern.matcher(features);
-
-        while(matcher.find()) {
+        while (matcher.find()) {
             final String cur = matcher.group(1);
             try {
                 final ProfilingFeatureType featureType = ProfilingFeatureType.valueOf(cur);
                 tmp |= featureType.getMask();
             } catch (final IllegalArgumentException e) {
-
+                // Ignore bad entry like 'FOO'
             }
         }
-
         this.profilingBits = tmp;
     }
 
@@ -82,4 +81,29 @@ public class ProfilingFeature {
     public boolean isProfilingJAXRS() {
         return isDefined(ProfilingFeatureType.JAXRS);
     }
+
+    public boolean isProfilingAPI() {
+        return isDefined(ProfilingFeatureType.API);
+    }
+
+    public boolean isProfilingDAO() {
+        return isDefined(ProfilingFeatureType.DAO);
+    }
+
+    public boolean isProfilingDAOWithDetails() {
+        return isDefined(ProfilingFeatureType.DAO_DETAILS);
+    }
+
+    public boolean isProfilingPlugin() {
+        return isDefined(ProfilingFeatureType.PLUGIN);
+    }
+
+    public boolean isProfilingGlock() {
+        return isDefined(ProfilingFeatureType.GLOCK);
+    }
+
+    public boolean isProfilingDaoConnection() {
+        return isDefined(ProfilingFeatureType.DAO_CONNECTION);
+    }
+
 }
