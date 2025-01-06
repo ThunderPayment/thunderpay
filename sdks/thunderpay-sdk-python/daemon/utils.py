@@ -85,4 +85,22 @@ def cached(f):
 
     return wrapper
 
-        
+def decode_auth(authstr):
+    if not authstr:
+        return None, None
+    authstr = authstr.replace("Basic ", "")
+    decoded_str = b64decode(authstr).decode("latin1")
+    user, password = decoded_str.split(":")
+    return user, password
+
+
+def parse_params(params):
+    args = params
+    kwargs = {}
+    if isinstance(params, list):
+        if len(params) > 0 and isinstance(params[-1], dict):
+            kwargs = params.pop()
+    elif isinstance(params, dict):
+        kwargs = params
+        args = ()
+    return args, kwargs
