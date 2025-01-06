@@ -64,6 +64,14 @@ def rpc(f=None, requires_wallet=False, requires_network=False, requires_lightnin
     
     return wrapper
 
-
+def authenticate(f):
+    async def wrapper(daemon, request):
+        auth = request.headers.get("Authorization")
+        user, password = decode_auth(auth)
+        
+        if not (user == daemon.LOGIN and password == daemon.PASSWORD):
+        
+        
+        return wrapper
 
         
