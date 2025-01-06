@@ -19,6 +19,7 @@
     <modules>
         <module>clock</module>
         <module>commons</module>
+        <module>concurrent</module>
         <module>xmlloader</module>
         <module>config-magic</module>
         <module>metric-api</module>
