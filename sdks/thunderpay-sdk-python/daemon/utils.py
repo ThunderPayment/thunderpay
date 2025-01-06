@@ -104,3 +104,15 @@ def parse_params(params):
         kwargs = params
         args = ()
     return args, kwargs
+
+def get_exception_message(e):
+    return traceback.format_exception_only(type(e), e)[-1].strip()
+
+
+@contextmanager
+def hide_logging_errors(enable):
+    if enable:
+        logging.disable(logging.ERROR)
+    yield
+    if enable:
+        logging.disable(logging.NOTSET)
