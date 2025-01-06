@@ -18,11 +18,17 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalTime;
 
 public class ClockUtil {
+
     public static DateTime toUTCDateTime(final LocalDate localDate, final LocalTime referenceTime, final DateTimeZone dateTimeZone) {
         DateTime targetDateTime;
         try {
-            targetDateTime = new DateTime(localDate.getYear(), localDate.getMonthOfYear(), localDate.getDayOfMonth(), referenceTime.getHourOfDay(), referenceTime.getMinuteOfHour(), referenceTime.getSecondOfMinute(), dateTimeZone);
-
+            targetDateTime = new DateTime(localDate.getYear(),
+                    localDate.getMonthOfYear(),
+                    localDate.getDayOfMonth(),
+                    referenceTime.getHourOfDay(),
+                    referenceTime.getMinuteOfHour(),
+                    referenceTime.getSecondOfMinute(),
+                    dateTimeZone);
         } catch (final IllegalInstantException e) {
             targetDateTime = localDate.toDateTimeAtStartOfDay(dateTimeZone);
         }
@@ -34,7 +40,11 @@ public class ClockUtil {
         return new LocalDate(dateTime, dateTimeZone);
     }
 
-    public static DateTimeZone toUTCDateTime(final DateTime dateTime) {
+    public static DateTime toUTCDateTime(final DateTime dateTime) {
         return toDateTime(dateTime, DateTimeZone.UTC);
+    }
+
+    public static DateTime toDateTime(final DateTime dateTime, final DateTimeZone accountTimeZone) {
+        return dateTime.toDateTime(accountTimeZone);
     }
 }
