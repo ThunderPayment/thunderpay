@@ -16,6 +16,7 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
 public class DefaultClock implements Clock {
+
     @Override
     public DateTime getNow(final DateTimeZone tz) {
         final DateTime result = new DateTime(tz);
@@ -30,6 +31,19 @@ public class DefaultClock implements Clock {
     @Override
     public LocalDate getUTCToday() {
         return getToday(DateTimeZone.UTC);
+    }
+
+    @Override
+    public LocalDate getToday(final DateTimeZone timeZone) {
+        return new LocalDate(getUTCNow(), timeZone);
+    }
+
+    public static DateTime toUTCDateTime(final DateTime input) {
+        if (input == null) {
+            return null;
+        }
+        final DateTime result = input.toDateTime(DateTimeZone.UTC);
+        return truncateMs(result);
     }
 
     public static DateTime truncateMs(final DateTime input) {
