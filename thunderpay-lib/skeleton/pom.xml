@@ -118,7 +118,7 @@
             <artifactId>guice-bridge</artifactId>
             <version>3.1.1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.glassfish.hk2</groupId>
             <artifactId>hk2-api</artifactId>
