@@ -36,5 +36,23 @@ public class ResourceTimer {
         this.tags = tags == null ? null : new HashMap<>(tags);
         this.registry = registry;
     }
-    
+
+    public void update(final int responseStatus, final long duration, final TimeUnit unit) {
+        final String metricName;
+        if (tags != null && !tags.isEmpty()) {
+            final String tags = METRIC_NAME_JOINER.join(getTagsValues());
+            metricName = METRIC_NAME_JOINER.join(
+                    escapeMetrics("kb_resource", resourcePath, name, httpMethod, tags, responseStatusGroup(responseStatus), responseStatus));
+        } else {
+            metricName = METRIC_NAME_JOINER.join(
+                    escapeMetrics("kb_resource", resourcePath, name, httpMethod, responseStatusGroup(responseStatus), responseStatus));
+        }
+
+        final Timer timer = registry.timer(metricName);
+        timer.update(duration, unit);
+    }
+
+    public String responseStatusGroup(final int responseStatus) {
+        return String.format("%sxx", responseStatus / 100);
+    }
 }
