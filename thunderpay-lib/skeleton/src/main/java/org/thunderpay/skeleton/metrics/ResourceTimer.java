@@ -22,10 +22,13 @@ import org.thunderpay.metrics.api.Timer;
 import org.thunderpay.commons.utils.Joiner;
 
 public class ResourceTimer {
+
     private static final Joiner METRIC_NAME_JOINER = Joiner.on('.');
+
     private final String resourcePath;
     private final String name;
     private final String httpMethod;
+
     private final Map<String, Object> tags;
     private final MetricRegistry registry;
 
@@ -52,7 +55,28 @@ public class ResourceTimer {
         timer.update(duration, unit);
     }
 
-    public String responseStatusGroup(final int responseStatus) {
+    private List<String> escapeMetrics(final Object... names) {
+        final List<String> result = new ArrayList<String>(names.length);
+        for (final Object name : names) {
+            final String metricName = String.valueOf(name);
+            result.add(metricName.replaceAll("\\.", "_"));
+        }
+        return result;
+    }
+
+    private List<Object> getTagsValues() {
+        final List<Object> values = new ArrayList<Object>(tags.values().size());
+        for (final Object value : tags.values()) {
+            if (value != null) {
+                values.add(value);
+            } else {
+                values.add("null");
+            }
+        }
+        return values;
+    }
+
+    private String responseStatusGroup(final int responseStatus) {
         return String.format("%sxx", responseStatus / 100);
     }
 }
