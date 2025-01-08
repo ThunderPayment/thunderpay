@@ -13,4 +13,32 @@ public class BillingExceptionBase extends Exception{
         this.code = code;
         this.formattedMsg = msg;
     }
+
+    @Override
+    public String getMessage() {
+        return formattedMsg;
+    }
+
+    @Override
+    public Throwable getCause() {
+        return cause;
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("{cause=").append(cause);
+        sb.append(", code=").append(code);
+        sb.append(", formattedMsg='").append(formattedMsg).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public BillingExceptionBase(final BillingExceptionBase cause) {
+        this(cause, cause.getCode(), cause.getMessage());
+    }
 }
