@@ -12,6 +12,8 @@
 package org.thunderpay.billing;
 
 public enum ErrorCode {
+
+    __UNKNOWN_EROR_CODE(-1, "Unknown error code");
     private final int code;
     private final String format;
 
@@ -26,5 +28,15 @@ public enum ErrorCode {
 
     public int getCode() {
         return code;
+    }
+
+    public static ErrorCode fromCode(final int code) {
+        for(final ErrorCode errorCode : ErrorCode.values()) {
+            if (errorCode.getCode() == code) {
+                return errorCode;
+            }
+        }
+
+        return __UNKNOWN_EROR_CODE;
     }
 }
