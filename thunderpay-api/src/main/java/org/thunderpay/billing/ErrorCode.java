@@ -11,5 +11,20 @@
 
 package org.thunderpay.billing;
 
-public class ErrorCode {
+public enum ErrorCode {
+    private final int code;
+    private final String format;
+
+    ErrorCode(final int code, final String format) {
+        this.code = code;
+        this.format = format;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
+    public int getCode() {
+        return code;
+    }
 }
