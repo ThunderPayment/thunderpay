@@ -12,5 +12,13 @@
 package org.thunderpay.billing.util.nodes;
 
 public enum SystemNodeCommandType {
+    Class<? extends NodeCommandMetadata> commandMetadataClass;
 
+    SystemNodeCommandType(final Class<? extends NodeCommandMetadata> commandMetadataClass) {
+        this.commandMetadataClass = commandMetadataClass;
+    }
+
+    public Class<? extends NodeCommandMetadata> getCommandMetadataClass() {
+        return commandMetadataClass;
+    }
 }
