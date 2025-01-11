@@ -12,6 +12,12 @@
 package org.thunderpay.billing.util.nodes;
 
 public enum SystemNodeCommandType {
+    INSTALL_PLUGIN(PluginNodeCommandMetadata.class),
+    UNINSTALL_PLUGIN(PluginNodeCommandMetadata.class),
+    START_PLUGIN(PluginNodeCommandMetadata.class),
+    STOP_PLUGIN(PluginNodeCommandMetadata.class),
+    RESTART_PLUGIN(PluginNodeCommandMetadata.class);
+
     Class<? extends NodeCommandMetadata> commandMetadataClass;
 
     SystemNodeCommandType(final Class<? extends NodeCommandMetadata> commandMetadataClass) {
