@@ -15,4 +15,6 @@ public interface NodeCommand {
     public boolean isSystemCommandType();
 
     public String getNodeCommandType();
+
+    public NodeCommandMetadata getNodeCommandMetadata();
 }
