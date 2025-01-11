@@ -15,6 +15,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class NodeCommandProperty {
+
     private String key;
     private Object value;
 
@@ -28,5 +29,18 @@ public class NodeCommandProperty {
 
     public String getKey() {
         return key;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("NodeCommandProperty{");
+        sb.append("key='").append(key).append('\'');
+        sb.append(", value=").append(value);
+        sb.append('}');
+        return sb.toString();
     }
 }
