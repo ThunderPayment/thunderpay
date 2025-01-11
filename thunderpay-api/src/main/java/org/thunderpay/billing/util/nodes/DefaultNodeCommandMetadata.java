@@ -16,12 +16,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class DefaultNodeCommandMetadata implements NodeCommandMetadata {
+
     private List<NodeCommandProperty> properties;
 
-    public DefaultNodeCommandMetadata() {}
+    public DefaultNodeCommandMetadata() {
+    }
 
     @JsonCreator
     public DefaultNodeCommandMetadata(@JsonProperty("properties") final List<NodeCommandProperty> properties) {
         this.properties = List.copyOf(properties);
+    }
+
+    @Override
+    public List<NodeCommandProperty> getProperties() {
+        return List.copyOf(properties);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("DefaultNodeCommandMetadata{");
+        sb.append("properties=").append(properties);
+        sb.append('}');
+        return sb.toString();
     }
 }
