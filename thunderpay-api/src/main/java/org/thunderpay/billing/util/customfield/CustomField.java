@@ -16,7 +16,13 @@ import org.thunderpay.billing.ObjectType;
 import org.thunderpay.billing.util.entity.Entity;
 
 public interface CustomField extends Entity {
+
     public UUID getObjectId();
 
     public ObjectType getObjectType();
+
+    public String getFieldName();
+
+    public String getFieldValue();
+
 }
