@@ -28,7 +28,22 @@ public class PluginNodeCommandMetadata extends DefaultNodeCommandMetadata implem
     }
 
     @JsonCreator
-    public PluginNodeCommandMetadata() {
-        super();
+    public PluginNodeCommandMetadata(@JsonProperty(PLUGIN_KEY) final String pluginKey, @JsonProperty(PLUGIN_NAME) final String pluginName, @JsonProperty(PLUGIN_VERSION) final String pluginVersion, @JsonProperty("properties") final List<NodeCommandProperty> properties) {
+        super(properties);
+        this.pluginKey = pluginKey;
+        this.pluginName = pluginName;
+        this.pluginVersion = pluginVersion;
+    }
+
+    public String getPluginKey() {
+        return pluginKey;
+    }
+
+    public String getPluginName() {
+        return pluginName;
+    }
+
+    public String getPluginVersion() {
+        return pluginVersion;
     }
 }
