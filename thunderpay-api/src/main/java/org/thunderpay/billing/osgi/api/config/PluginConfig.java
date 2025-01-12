@@ -18,11 +18,15 @@ public interface PluginConfig extends Comparable<PluginConfig> {
 
     public String getPluginName();
 
+    public PluginType getPluginType();
+
     public String getVersion();
 
     public String getPluginVersionnedName();
 
     public File getPluginVersionRoot();
+
+    public PluginLanguage getPluginLanguage();
 
     public boolean isSelectedForStart();
 
