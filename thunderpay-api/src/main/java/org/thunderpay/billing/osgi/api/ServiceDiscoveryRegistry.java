@@ -12,5 +12,8 @@
 package org.thunderpay.billing.osgi.api;
 
 public interface ServiceDiscoveryRegistry {
+
     void register();
+
+    void unregister();
 }
