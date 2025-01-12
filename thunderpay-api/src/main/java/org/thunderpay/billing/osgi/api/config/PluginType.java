@@ -15,6 +15,10 @@ public enum PluginType {
     PAYMENT,
     NOTIFICATION,
     INVOICE,
+    CURRENCY,
+    PAYMENT_CONTROL,
+    CATALOG,
+    ENTITLEMENT,
     USAGE,
-    UNKNOWN
+    __UNKNOWN__
 }
