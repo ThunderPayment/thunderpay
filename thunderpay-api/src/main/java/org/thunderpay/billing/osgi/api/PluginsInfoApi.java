@@ -16,4 +16,6 @@ import org.thunderpay.billing.osgi.api.config.PluginLanguage;
 
 public interface PluginsInfoApi extends ThunderApi {
     public Iterable<PluginInfo> getPluginsInfo();
+
+    public void notifyOfStateChanged(PluginStateChange newState, String pluginKey, String pluginName, String pluginVersion, PluginLanguage pluginLanguage);
 }
