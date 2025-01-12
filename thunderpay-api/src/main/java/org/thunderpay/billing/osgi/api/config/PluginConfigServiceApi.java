@@ -14,5 +14,8 @@ package org.thunderpay.billing.osgi.api.config;
 import org.thunderpay.billing.ThunderApi;
 
 public interface PluginConfigServiceApi extends ThunderApi {
+
     public PluginJavaConfig getPluginJavaConfig(long bundleId);
+
+    public PluginRubyConfig getPluginRubyConfig(long bundleId);
 }
