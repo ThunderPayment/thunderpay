@@ -23,4 +23,9 @@ public interface PluginInfo {
     public String getVersion();
 
     public PluginState getPluginState();
+
+    public Set<PluginServiceInfo> getServices();
+
+    public boolean isSelectedForStart();
+
 }
