@@ -12,5 +12,10 @@
 package org.thunderpay.billing.osgi.api.config;
 
 public interface PluginRubyConfig extends PluginConfig {
+
     public String getRubyMainClass();
+
+    public String getRubyLoadDir();
+
+    public String getRubyRequire();
 }
