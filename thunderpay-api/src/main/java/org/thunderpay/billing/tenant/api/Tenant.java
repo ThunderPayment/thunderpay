@@ -11,5 +11,8 @@
 
 package org.thunderpay.billing.tenant.api;
 
-public interface Tenant {
+import org.thunderpay.billing.util.entity.Entity;
+
+public interface Tenant extends TenantData, Entity {
+
 }
