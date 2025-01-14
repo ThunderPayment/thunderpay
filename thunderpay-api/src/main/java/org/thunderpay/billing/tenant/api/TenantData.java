@@ -12,7 +12,10 @@
 package org.thunderpay.billing.tenant.api;
 
 public interface TenantData {
+
     public String getExternalKey();
 
     public String getApiKey();
+
+    public String getApiSecret();
 }
