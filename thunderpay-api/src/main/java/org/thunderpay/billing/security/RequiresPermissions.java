@@ -20,4 +20,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RequiresPermissions {
     Permission[] value();
+
+    Logical logical() default Logical.AND;
 }
