@@ -15,11 +15,16 @@ import org.thunderpay.billing.BillingExceptionBase;
 import org.thunderpay.billing.ErrorCode;
 
 public class SecurityApiException extends BillingExceptionBase {
+
     public SecurityApiException(final Throwable cause, final int code, final String msg) {
         super(cause, code, msg);
     }
 
     public SecurityApiException(final Throwable cause, final ErrorCode code, final Object... args) {
         super(cause, code, args);
+    }
+
+    public SecurityApiException(final ErrorCode code, final Object... args) {
+        super(code, args);
     }
 }
