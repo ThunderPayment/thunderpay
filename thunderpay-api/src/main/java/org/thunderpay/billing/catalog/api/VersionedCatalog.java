@@ -17,5 +17,9 @@ import java.util.List;
 public interface VersionedCatalog {
     public String getCatalogName();
 
+    public List<StaticCatalog> getVersions();
+
+    public StaticCatalog getCurrentVersion();
+
     public StaticCatalog getVersion(Date targetDate);
 }
