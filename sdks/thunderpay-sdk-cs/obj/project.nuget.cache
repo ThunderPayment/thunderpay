@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "X5pkwUhzWXI=",
+  "dgSpecHash": "cUnQqBwN68k=",
   "success": true,
   "projectFilePath": "/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/thunderpay-sdk-cs.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/krisnapranav/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
