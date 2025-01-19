@@ -33,4 +33,12 @@ public enum BillingPeriod {
     NO_BILLING_PERIOD(Period.ZERO);
 
     private final Period period;
+
+    BillingPeriod(final Period period) {
+        this.period = period;
+    }
+
+    public Period getPeriod() {
+        return period;
+    }
 }
