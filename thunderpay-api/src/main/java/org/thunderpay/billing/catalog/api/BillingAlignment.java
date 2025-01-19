@@ -15,6 +15,6 @@ public enum BillingAlignment {
     ACCOUNT,
 
     BUNDLE,
-    
+
     SUBSCRIPTION
 }
