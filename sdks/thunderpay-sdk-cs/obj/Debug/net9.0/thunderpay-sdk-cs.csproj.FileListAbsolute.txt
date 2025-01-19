@@ -1,0 +1,12 @@
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/bin/Debug/net9.0/thunderpay-sdk-cs.deps.json
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/bin/Debug/net9.0/thunderpay-sdk-cs.dll
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/bin/Debug/net9.0/thunderpay-sdk-cs.pdb
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.GeneratedMSBuildEditorConfig.editorconfig
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.AssemblyInfoInputs.cache
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.AssemblyInfo.cs
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.csproj.CoreCompileInputs.cache
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.sourcelink.json
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.dll
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/refint/thunderpay-sdk-cs.dll
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/thunderpay-sdk-cs.pdb
+/Users/krisnapranav/Projects/ThunderPayments/thunderpay/sdks/thunderpay-sdk-cs/obj/Debug/net9.0/ref/thunderpay-sdk-cs.dll
