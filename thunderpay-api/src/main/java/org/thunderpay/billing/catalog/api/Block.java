@@ -20,5 +20,7 @@ public interface Block {
 
     public BigDecimal getSize();
 
+    public InternationalPrice getPrice();
+
     public BigDecimal getMinTopUpCredit() throws CatalogApiException;
 }
