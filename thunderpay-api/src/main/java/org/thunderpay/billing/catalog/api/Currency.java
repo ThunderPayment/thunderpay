@@ -180,4 +180,18 @@ public interface Currency {
     ZMW("ZK"),
     ZWD("Z$"),
     BTC("Ƀ");
+
+    private final String symbol;
+
+    Currency(final String symbol) {
+        this.symbol = symbol;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public static Currency getDefaultCurrency() {
+        return Currency.USD;
+    }
 }
