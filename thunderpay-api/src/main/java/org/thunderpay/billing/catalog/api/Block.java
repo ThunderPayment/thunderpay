@@ -19,4 +19,6 @@ public interface Block {
     public Unit getUnit();
 
     public BigDecimal getSize();
+
+    public BigDecimal getMinTopUpCredit() throws CatalogApiException;
 }
