@@ -11,5 +11,12 @@
 
 package org.thunderpay.billing.catalog.api;
 
-public class Block {
+import java.math.BigDecimal;
+
+public interface Block {
+    public BlockType getType();
+
+    public Unit getUnit();
+
+    public BigDecimal getSize();
 }
