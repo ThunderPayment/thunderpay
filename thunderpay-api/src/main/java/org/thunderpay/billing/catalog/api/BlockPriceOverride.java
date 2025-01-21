@@ -19,4 +19,6 @@ public interface BlockPriceOverride {
     public BigDecimal getSize();
 
     public BigDecimal getPrice();
+
+    public Currency getCurrency();
 }
