@@ -11,10 +11,10 @@
 
 package org.thunderpay.billing.catalog.api;
 
-import jakarta.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlEnum;
 
 @XmlEnum
-public interface Currency {
+public enum Currency {
     AED("د.إ"),
     AFN("؋"),
     ALL("L"),
@@ -179,6 +179,7 @@ public interface Currency {
     ZAR("R"),
     ZMW("ZK"),
     ZWD("Z$"),
+
     BTC("Ƀ");
 
     private final String symbol;
@@ -193,5 +194,14 @@ public interface Currency {
 
     public static Currency getDefaultCurrency() {
         return Currency.USD;
+    }
+
+    public static Currency fromCode(final String currencyCode) {
+        for (final Currency currency : Currency.values()) {
+            if (currency.toString().equals(currencyCode)) {
+                return currency;
+            }
+        }
+        return getDefaultCurrency();
     }
 }
