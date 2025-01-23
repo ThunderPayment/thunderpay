@@ -11,7 +11,14 @@
 
 package utils
 
-import "time"
+import (
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"reflect"
+	"time"
+	"unicode/utf8"
+)
 
 func PtrBool(v bool) *bool {
 	return &v
@@ -43,4 +50,32 @@ func PtrString(v string) *string {
 
 func PtrTime(v time.Time) *time.Time {
 	return &v
+}
+
+func NewStrictDecoder(data []byte) *json.Decoder {
+	dec := json.NewDecoder(bytes.NewBuffer(data))
+	return dec
+}
+
+func Strlen(s string) int {
+	return utf8.RuneCountInString(s)
+}
+
+func NewError(s string) error {
+	return fmt.Errorf(s)
+}
+
+func IsNill(i interface{}) bool {
+	if i == nil {
+		return true
+	}
+
+	switch reflect.TypeOf(i).Kind() {
+	case reflect.Chan, reflect.Func, reflect.Map, reflect.Ptr, reflect.UnsafePointer, reflect.Interface, reflect.Slice:
+		return reflect.ValueOf(i).IsNil()
+	case reflect.Array:
+		return reflect.ValueOf(i).IsZero()
+	}
+
+	return false
 }
