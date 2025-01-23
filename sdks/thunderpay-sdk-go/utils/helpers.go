@@ -156,3 +156,18 @@ func ParameterAddToHeaderOrQuery(headerOrQueryParams interface{}, keyPrefix stri
 		break
 	}
 }
+
+func ParameterValueToString(obj interface{}, key string) string {
+	if reflect.TypeOf(obj).Kind() != reflect.Ptr {
+		return fmt.Sprintf("%v", obj)
+	}
+	var param, ok = obj.(MappedNullable)
+	if !ok {
+		return ""
+	}
+	dataMap, err := param.ToMap()
+	if err != nil {
+		return ""
+	}
+	return fmt.Sprintf("%v", dataMap[key])
+}
