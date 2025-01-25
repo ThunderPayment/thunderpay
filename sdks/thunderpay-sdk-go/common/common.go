@@ -42,3 +42,22 @@ type FormFile struct {
 	FileName     string
 	FormFileName string
 }
+
+type XenditSdkError struct {
+	rawResponse  map[string]interface{}
+	status       string
+	errorCode    string
+	errorMessage string
+}
+
+func (e XenditSdkError) Error() string {
+	return e.errorMessage
+}
+
+func (e XenditSdkError) ErrorCode() string {
+	return e.errorCode
+}
+
+func (e XenditSdkError) RawResponse() map[string]interface{} {
+	return e.rawResponse
+}
