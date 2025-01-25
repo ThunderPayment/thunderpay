@@ -2,8 +2,6 @@
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 
-Thunderpay Official Repository
-
 Thunderpay is a robust and scalable payment gateway service built using Java. The platform simplifies the process of handling online payments, offering a comprehensive suite of features for secure transaction processing, integration with multiple payment providers, and cross-platform SDKs to enable smooth mobile and web application integration.
 
 ## About Thunderpay
