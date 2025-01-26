@@ -50,6 +50,10 @@ type XenditSdkError struct {
 	errorMessage string
 }
 
+func NewXenditSdkError(response *[]byte, paramStatus string, paramStatusText string) *XenditSdkError {
+
+}
+
 func (e XenditSdkError) Error() string {
 	return e.errorMessage
 }
@@ -60,4 +64,17 @@ func (e XenditSdkError) ErrorCode() string {
 
 func (e XenditSdkError) RawResponse() map[string]interface{} {
 	return e.rawResponse
+}
+
+func (e XenditSdkError) Status() string {
+	return e.status
+}
+
+func (e XenditSdkError) FullError() map[string]interface{} {
+	return map[string]interface{}{
+		"rawResponse":  e.rawResponse,
+		"status":       e.status,
+		"errorCode":    e.errorCode,
+		"errorMessage": e.errorMessage,
+	}
 }
