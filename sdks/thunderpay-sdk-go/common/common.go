@@ -13,6 +13,8 @@ package common
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
 	"net/http"
 	"net/url"
 )
@@ -51,7 +53,84 @@ type XenditSdkError struct {
 }
 
 func NewXenditSdkError(response *[]byte, paramStatus string, paramStatusText string) *XenditSdkError {
+	var _rawResponse map[string]interface{}
 
+	err := json.Unmarshal(*response, &_rawResponse)
+
+	if err != nil {
+		_rawResponse = map[string]interface{}{}
+	}
+
+	_status := paramStatus
+
+	if _status == "" {
+		if val, ok := _rawResponse["status"]; ok {
+			_status = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _status == "" {
+		if val, ok := _rawResponse["status_code"]; ok {
+			_status = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _status == "" {
+		if val, ok := _rawResponse["statusCode"]; ok {
+			_status = fmt.Sprintf("%v", val)
+		}
+	}
+
+	_errorCode := ""
+
+	if _errorCode == "" {
+		if val, ok := _rawResponse["error"]; ok {
+			_errorCode = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _errorCode == "" {
+		if val, ok := _rawResponse["error_code"]; ok {
+			_errorCode = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _errorCode == "" {
+		if val, ok := _rawResponse["errorCode"]; ok {
+			_errorCode = fmt.Sprintf("%v", val)
+		}
+	}
+
+	_errorMessage := ""
+
+	if _errorMessage == "" {
+		if val, ok := _rawResponse["message"]; ok {
+			_errorMessage = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _errorMessage == "" {
+		if val, ok := _rawResponse["error_message"]; ok {
+			_errorMessage = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _errorMessage == "" {
+		if val, ok := _rawResponse["errorMessage"]; ok {
+			_errorMessage = fmt.Sprintf("%v", val)
+		}
+	}
+
+	if _errorMessage == "" {
+		_errorMessage = paramStatusText
+	}
+
+	return &XenditSdkError{
+		rawResponse:  _rawResponse,
+		status:       _status,
+		errorCode:    _errorCode,
+		errorMessage: _errorMessage,
+	}
 }
 
 func (e XenditSdkError) Error() string {
