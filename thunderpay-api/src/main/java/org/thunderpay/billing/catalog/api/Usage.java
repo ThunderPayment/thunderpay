@@ -12,22 +12,28 @@
 package org.thunderpay.billing.catalog.api;
 
 import java.math.BigDecimal;
-
+ 
 public interface Usage extends CatalogEntity {
     public StaticCatalog getCatalog();
-
+ 
     public BillingMode getBillingMode();
-
+ 
     public UsageType getUsageType();
-
+ 
     public TierBlockPolicy getTierBlockPolicy();
-
+ 
     public BillingPeriod getBillingPeriod();
+ 
 
-    public boolean compilesWithLimits(String unit, BigDecimal value);
+    public boolean compliesWithLimits(String unit, BigDecimal value);
 
     public Limit[] getLimits();
-
+ 
     public Tier[] getTiers();
-
-}
+ 
+    public Block[] getBlocks();
+ 
+    public InternationalPrice getFixedPrice();
+ 
+    public InternationalPrice getRecurringPrice();
+ }
