@@ -28,5 +28,29 @@ namespace ThunderPay
                 return "/bank_account_verifications";
             }
         } // public static string resource_href
+
+        [ResourceField]
+        public int attempts
+        {
+            get; set;
+        } // public int attempts 
+
+        [ResourceField]
+        public int attempts_remaining
+        {
+            get; set;
+        } // public int attempts_remaining 
+
+        [ResourceField]
+        public string deposit_status
+        {
+            get; set;
+        } // public string deposit_status 
+
+        [ResourceField]
+        public string verification_status
+        {
+            get; set;
+        } // public string verification_status 
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
