@@ -62,5 +62,21 @@ namespace ThunderPay
         public BankAccountVerification() { }
 
         public BankAccountVerification(Dictionary<string, object> payload) { }
+
+        public static BankAccountVerification Fetch(string href)
+        {
+            return Resource.Fetch<BankAccountVerification>(href);
+        } // public static BankAccountVerification Fetch(string href)
+
+        public void Save()
+        {
+            this.Save<BankAccountVerification>();
+        } // public void Save()
+
+        public void Reload()
+        {
+            this.Reload<BankAccountVerification>();
+        } // public void Reload()
+
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
