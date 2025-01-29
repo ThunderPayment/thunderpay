@@ -23,6 +23,34 @@ namespace ThunderPay.Exception
 {
     public class APIException : HTTPException
     {
+        public string additional
+        {
+            get; set;
+        }
 
+        public string category_code
+        {
+            get; set;
+        }
+
+        public string category_type
+        {
+            get; set;
+        }
+
+        public string description
+        {
+            get; set;
+        }
+
+        public Dictionary<string, string> extras
+        {
+            get; set;
+        }
+
+        public string request_id
+        {
+            get; set;
+        }
     }
 }
