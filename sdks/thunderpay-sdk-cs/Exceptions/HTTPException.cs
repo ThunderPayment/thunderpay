@@ -29,5 +29,13 @@ namespace ThunderPay.Exception
         {
             get; set;
         }
+
+        public HTTPException() : base() { }
+
+        public HTTPException(string message) : base(message) { }
+
+        public HTTPException(string message, Exception e) : base(message, e) { }
+
+
     } // public class HTTPException : Exception
 } // namespace ThunderPay.Exception
