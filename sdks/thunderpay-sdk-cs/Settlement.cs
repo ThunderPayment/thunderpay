@@ -117,5 +117,9 @@ namespace ThunderPay
             public Collection(string href) : base(href) { }
         } // public class Collection : ResourceCollection<Settlement>
 
+        public static ResourceQuery<Settlement> Query()
+        {
+            return new ResourceQuery<Settlement>(resource_href);
+        } // public static ResourceQuery<Settlement> Query()
     } // public class Settlement : Resource
 } // namespace ThunderPay
