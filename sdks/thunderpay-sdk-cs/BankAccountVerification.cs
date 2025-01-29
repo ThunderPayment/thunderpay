@@ -86,5 +86,16 @@ namespace ThunderPay
             Client.Put<BankAccountVerification>(href, Resource.Serialize(payload));
             Reload();
         } // public void Confirm(int amount_1, int amount_2)
+
+        public class Collection : ResourceCollection<BankAccountVerification>
+        {
+            public Collection() : base(resource_href) { }
+            public Collection(string href) : base(href) { }
+        } // public class Collection : ResourceCollection<BankAccountVerification>
+
+        public static ResourceQuery<BankAccountVerification> Query()
+        {
+            return new ResourceQuery<BankAccountVerification>(resource_href);
+        } // public static ResourceQuery<BankAccountVerification> Query()
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
