@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("thunderpay-sdk-cs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e13811041900ce797e7be831ede6883df0274100")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8c17d0039ea246a90bd41a1444cdae755455b1b")]
 [assembly: System.Reflection.AssemblyProductAttribute("thunderpay-sdk-cs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("thunderpay-sdk-cs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
