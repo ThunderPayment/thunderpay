@@ -58,5 +58,9 @@ namespace ThunderPay
         {
             get; set;
         } // public BankAccount bank_account 
+
+        public BankAccountVerification() { }
+
+        public BankAccountVerification(Dictionary<string, object> payload) { }
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
