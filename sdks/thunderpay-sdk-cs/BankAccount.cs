@@ -92,5 +92,16 @@ namespace ThunderPay
         public BankAccount() { }
 
         public BankAccount(Dictionary<string, object> payload) { }
+
+        public static BankAccount Fetch(string href)
+        {
+            return Resource.Fetch<BankAccount>(href);
+        } // public static BankAccount Fetch(string href)
+
+        public void Save()
+        {
+            this.Save<BankAccount>();
+        } // public void Save()
+
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
