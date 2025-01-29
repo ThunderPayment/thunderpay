@@ -36,4 +36,13 @@ public static class UriBuilderExtensions
 
         return uri;
     } // public static UriBuilder SetQueryParam(this UriBuilder uri, string key, string value)
+
+    public static IEnumerable<KeyValuePair<string, string>> GetQueryParams(
+        this UriBuilder uri
+    )
+    {
+        return uri.ParseQuery().AsKeyValuePairs();
+    }
+
+
 } // public static class UriBuilderExtensions
