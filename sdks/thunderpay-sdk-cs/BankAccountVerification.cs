@@ -52,5 +52,11 @@ namespace ThunderPay
         {
             get; set;
         } // public string verification_status 
+
+        [ResourceField(field = "bank_account_verifications.bank_account", link = true, serialize = false)]
+        public BankAccount bank_account
+        {
+            get; set;
+        } // public BankAccount bank_account 
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
