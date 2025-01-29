@@ -42,7 +42,14 @@ public static class UriBuilderExtensions
     )
     {
         return uri.ParseQuery().AsKeyValuePairs();
-    }
+    } // public static IEnumerable<KeyValuePair<string, string>> GetQueryParams
 
+    static IEnumerable<KeyValuePair<string, string>> AsKeyValuePairs(this NameValueCollection collection)
+    {
+        foreach (string key in collection.AllKeys)
+        {
+            yield return new KeyValuePair<string, string>(key, collection.Get(key));
+        } // static IEnumerable<KeyValuePair<string, string>> AsKeyValuePairs(this NameValueCollection collection)
+    }
 
 } // public static class UriBuilderExtensions
