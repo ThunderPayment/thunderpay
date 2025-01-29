@@ -95,7 +95,13 @@ namespace ThunderPay
             get; set;
         } // public string transaction_number
 
+        public Settlement() { }
 
+        public Settlement(Dictionary<string, object> payload) { }
 
+        public static Settlement Fetch(string href)
+        {
+            return Resource.Fetch<Settlement>(href);
+        }
     } // public class Settlement : Resource
 } // namespace ThunderPay
