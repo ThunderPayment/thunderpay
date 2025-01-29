@@ -15,6 +15,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Net.Mail;
 
 namespace ThunderPay
 {
@@ -102,6 +103,19 @@ namespace ThunderPay
         public static Settlement Fetch(string href)
         {
             return Resource.Fetch<Settlement>(href);
-        }
+        } // public static Settlement Fetch(string href)
+
+        public void Save()
+        {
+            this.Save<Settlement>();
+        } // public void Save()
+
+        public class Collection : ResourceCollection<Settlement>
+        {
+            public Collection() : base(resource_href) { }
+
+            public Collection(string href) : base(href) { }
+        } // public class Collection : ResourceCollection<Settlement>
+
     } // public class Settlement : Resource
 } // namespace ThunderPay
