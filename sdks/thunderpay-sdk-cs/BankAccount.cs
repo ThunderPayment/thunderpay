@@ -88,5 +88,9 @@ namespace ThunderPay
         {
             get; set;
         } // public Debit.Collection debits 
+
+        public BankAccount() { }
+
+        public BankAccount(Dictionary<string, object> payload) { }
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
