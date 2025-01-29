@@ -8,3 +8,25 @@
  * @copyright Copyright (c) 2024 ThunderPayment Developers, Krisna Pranav
  *
  */
+
+using System;
+using System.Linq;
+using System.Text;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+namespace ThunderPay
+{
+    public class ApiKey : Resource
+    {
+        [JsonIgnore]
+        public static string resource_href
+        {
+            get
+            {
+                return "/api_keys";
+            }
+        } // public static string resource_href
+    } // public class ApiKey : Resource
+} // namespace ThunderPay
