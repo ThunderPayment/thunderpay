@@ -132,5 +132,21 @@ namespace ThunderPay
             return debits.Create(payload);
         } // public override Debit Debit(Dictionary<string, object> payload)
 
+        public BankAccountVerification Verify()
+        {
+            return verifications.Create();
+        } // public BankAccountVerification Verify() 
+
+        public class Collection : ResourceCollection<BankAccount>
+        {
+            public Collection() : base(resource_href) { }
+            public Collection(string href) : base(href) { }
+        } // public class Collection : ResourceCollection<BankAccount>
+
+        public static ResourceQuery<BankAccount> Query()
+        {
+            return new ResourceQuery<BankAccount>(resource_href);
+        } // public static ResourceQuery<BankAccount> Query()
+
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
