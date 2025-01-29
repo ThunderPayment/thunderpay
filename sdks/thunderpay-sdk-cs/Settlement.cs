@@ -64,5 +64,38 @@ namespace ThunderPay
         {
             get; set;
         } // public FundingInstrument source 
+
+        [ResourceField(serialize = false)]
+        public string currency
+        {
+            get; set;
+        } // public string currency
+
+        [ResourceField(serialize = false)]
+        public string failure_reason
+        {
+            get; set;
+        } // public string failure_reason
+
+        [ResourceField(serialize = false)]
+        public string failure_reason_code
+        {
+            get; set;
+        } // public string failure_reason_code
+
+        [ResourceField(serialize = false)]
+        public string status
+        {
+            get; set;
+        } // public string status
+
+        [ResourceField(serialize = false)]
+        public string transaction_number
+        {
+            get; set;
+        } // public string transaction_number
+
+
+
     } // public class Settlement : Resource
 } // namespace ThunderPay
