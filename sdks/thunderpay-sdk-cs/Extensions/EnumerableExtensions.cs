@@ -33,6 +33,7 @@ public static class EnumerableExtensions
             }
 
             b.Append(stringSelector(item));
+            needsSeparator = true;
         }
 
         return b.ToString();
