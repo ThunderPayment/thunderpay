@@ -49,7 +49,11 @@ public static class UriBuilderExtensions
         foreach (string key in collection.AllKeys)
         {
             yield return new KeyValuePair<string, string>(key, collection.Get(key));
-        } // static IEnumerable<KeyValuePair<string, string>> AsKeyValuePairs(this NameValueCollection collection)
-    }
+        }
+    } // static IEnumerable<KeyValuePair<string, string>> AsKeyValuePairs(this NameValueCollection collection)
 
+    static NameValueCollection ParseQuery(this UriBuilder uri)
+    {
+        return HttpUtility.ParseQueryString(uri.Query);
+    }
 } // public static class UriBuilderExtensions
