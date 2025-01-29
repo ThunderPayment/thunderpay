@@ -43,5 +43,15 @@ namespace ThunderPay
                 return "https://api.thunderpay.com";
             }
         } // public static string API_URL 
+
+        internal static string API_KEY
+        {
+            get; set;
+        } // internal static string API_KEY
+
+        public static void configure(string apiKey)
+        {
+            API_KEY = apiKey;
+        } // public static void configure(string apiKey)
     } // public static class Thunderpay
 }
