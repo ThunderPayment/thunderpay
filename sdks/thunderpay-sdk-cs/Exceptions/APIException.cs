@@ -52,5 +52,16 @@ namespace ThunderPay.Exception
         {
             get; set;
         }
+
+        public APIException() { }
+
+        public APIException(
+            HttpWebResponse response,
+            Dictionary<string, object> responsePayload
+        )
+        {
+            additional = responsePayload.ContainsKey("additional") ? (string);
+
+        }
     }
 }
