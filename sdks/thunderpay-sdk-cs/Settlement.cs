@@ -33,6 +33,36 @@ namespace ThunderPay
         public FundingInstrument funding_instrument
         {
             get; set;
-        }
+        } // public FundingInstrument funding_instrument
+
+        [ResourceField]
+        public int amount
+        {
+            get; set;
+        } // public int amount 
+
+        [ResourceField]
+        public string description
+        {
+            get; set;
+        } // public string description 
+
+        [ResourceField]
+        public string appears_on_statement_as
+        {
+            get; set;
+        } // public string appears_on_statement_as 
+
+        [ResourceField(field = "settlements.destination", link = true)]
+        public FundingInstrument destination
+        {
+            get; set;
+        } // public FundingInstrument destination 
+
+        [ResourceField(field = "settlements.source", link = true)]
+        public FundingInstrument source
+        {
+            get; set;
+        } // public FundingInstrument source 
     } // public class Settlement : Resource
 } // namespace ThunderPay
