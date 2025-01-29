@@ -48,5 +48,14 @@ namespace ThunderPay
             this.Save<ApiKey>();
         } // public void Save
 
+        public void SaveToMarketplace()
+        {
+            this.Save<ApiKey>();
+        } // public void SaveToMarketplace()
+
+        public static ResourceQuery<ApiKey> Query()
+        {
+            return new ResourceQuery<ApiKey>(resource_href);
+        } // public static ResourceQuery<ApiKey> Query()
     } // public class ApiKey : Resource
 } // namespace ThunderPay
