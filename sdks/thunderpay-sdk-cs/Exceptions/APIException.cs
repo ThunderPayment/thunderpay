@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace ThunderPay.Exception
+namespace Balanced.Exceptions
 {
     public class APIException : HTTPException
     {
@@ -57,11 +57,19 @@ namespace ThunderPay.Exception
 
         public APIException(
             HttpWebResponse response,
-            Dictionary<string, object> responsePayload
-        )
+            Dictionary<string, object> responsePayload)
         {
-            additional = responsePayload.ContainsKey("additional") ? (string);
+            additional = responsePayload.ContainsKey("additional") ? (string)responsePayload["additional"] : null;
+            category_code = responsePayload.ContainsKey("category_code") ? (string)responsePayload["category_code"] : null;
+            category_type = responsePayload.ContainsKey("category_type") ? (string)responsePayload["category_type"] : null;
+            description = responsePayload.ContainsKey("description") ? (string)responsePayload["description"] : null;
 
+            if (responsePayload.ContainsKey("extras") && responsePayload["extras"] != null)
+                extras = ((JObject)responsePayload["extras"]).ToObject<Dictionary<string, string>>();
+
+            request_id = responsePayload.ContainsKey("request_id") ? (string)responsePayload["request_id"] : null;
+            status = responsePayload.ContainsKey("status") ? (string)responsePayload["status"] : null;
+            status_code = Convert.ToInt16(responsePayload["status_code"]);
         }
     }
 }
