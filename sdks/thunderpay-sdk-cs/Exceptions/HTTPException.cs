@@ -36,6 +36,10 @@ namespace ThunderPay.Exception
 
         public HTTPException(string message, Exception e) : base(message, e) { }
 
-
+        public HTTPException(HttpWebRequest response, string responsePayload)
+        {
+            status_code = (int)response.StatusCode;
+            status = responsePayload;
+        }
     } // public class HTTPException : Exception
 } // namespace ThunderPay.Exception
