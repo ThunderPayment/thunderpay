@@ -78,5 +78,13 @@ namespace ThunderPay
             this.Reload<BankAccountVerification>();
         } // public void Reload()
 
+        public void Confirm(int amount_1, int amount_2)
+        {
+            Dictionary<string, int> payload = new Dictionary<string, int>();
+            payload.Add("amount_1", amount_1);
+            payload.Add("amount_2", amount_2);
+            Client.Put<BankAccountVerification>(href, Resource.Serialize(payload));
+            Reload();
+        } // public void Confirm(int amount_1, int amount_2)
     } // public class BankAccountVerification : Resource
 } // namespace ThunderPay
