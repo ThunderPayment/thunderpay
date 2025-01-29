@@ -15,6 +15,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace ThunderPay
 {
@@ -43,5 +44,9 @@ namespace ThunderPay
         {
             get; set;
         } // public string fingerprint
+
+        public abstract Debit Debit(Dictionary<string, object> payload);
+
+        public abstract Credit Credit(Dictionary<string, object> payload);
     } // public abstract class FundingInstrument : Resource
 } // namespace ThunderPay
