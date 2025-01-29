@@ -58,5 +58,35 @@ namespace ThunderPay
         {
             get; set;
         } // public string routing_number 
+
+        [ResourceField(field = "bank_accounts.bank_account_verification", link = true, serialize = false)]
+        public BankAccountVerification verification
+        {
+            get; set;
+        } // public BankAccountVerification verification 
+
+        [ResourceField(field = "bank_accounts.bank_account_verifications", link = true, serialize = false)]
+        public BankAccountVerification.Collection verifications
+        {
+            get; set;
+        } // public BankAccountVerification.Collection verifications 
+
+        [ResourceField(field = "bank_accounts.credits", link = true, serialize = false)]
+        public Credit.Collection credits
+        {
+            get; set;
+        } // public Credit.Collection credits 
+
+        [ResourceField(field = "bank_accounts.customer", link = true)]
+        public Customer customer
+        {
+            get; set;
+        } // public Customer customer 
+
+        [ResourceField(field = "bank_accounts.debits", link = true, serialize = false)]
+        public Debit.Collection debits
+        {
+            get; set;
+        } // public Debit.Collection debits 
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
