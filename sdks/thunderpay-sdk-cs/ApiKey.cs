@@ -28,5 +28,13 @@ namespace ThunderPay
                 return "/api_keys";
             }
         } // public static string resource_href
+
+        [ResourceField]
+        public string secret
+        {
+            get; set;
+        } // public string secret
+
+        public ApiKey() { }
     } // public class ApiKey : Resource
 } // namespace ThunderPay
