@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Balanced.Exceptions
+namespace ThunderPay.Exceptions
 {
     public class APIException : HTTPException
     {
