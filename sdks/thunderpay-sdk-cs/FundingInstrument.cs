@@ -20,6 +20,28 @@ namespace ThunderPay
 {
     public abstract class FundingInstrument : Resource
     {
+        [ResourceField(serialize = false)]
+        public bool can_credit
+        {
+            get; set;
+        } // public bool can_credit
 
+        [ResourceField(serialize = false)]
+        public bool can_debit
+        {
+            get; set;
+        } // public bool can_debit
+
+        [ResourceField(serialize = false)]
+        public string bank_name
+        {
+            get; set;
+        } // public string bank_name
+
+        [ResourceField(serialize = false)]
+        public string fingerprint
+        {
+            get; set;
+        } // public string fingerprint
     } // public abstract class FundingInstrument : Resource
 } // namespace ThunderPay
