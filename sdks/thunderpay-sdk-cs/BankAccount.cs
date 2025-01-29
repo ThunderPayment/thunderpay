@@ -103,5 +103,15 @@ namespace ThunderPay
             this.Save<BankAccount>();
         } // public void Save()
 
+        public void Reload()
+        {
+            this.Reload<BankAccount>();
+        } // public void Reload()
+
+        public void AssociateToCustomer(Customer customer)
+        {
+            this.AssociateToCustomer(customer.href);
+        } // public void AssociateToCustomer(Customer customer)
+
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
