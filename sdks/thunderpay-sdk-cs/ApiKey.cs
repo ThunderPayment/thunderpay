@@ -36,5 +36,17 @@ namespace ThunderPay
         } // public string secret
 
         public ApiKey() { }
+
+        public static ApiKey Fetch(string href)
+        {
+            return Resource.Fetch<ApiKey>(href);
+        } // public static ApiKey Fetch(string href)
+
+        public void Save()
+        {
+            ThunderPay.configure(null);
+            this.Save<ApiKey>();
+        } // public void Save
+
     } // public class ApiKey : Resource
 } // namespace ThunderPay
