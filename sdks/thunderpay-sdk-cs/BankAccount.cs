@@ -113,5 +113,24 @@ namespace ThunderPay
             this.AssociateToCustomer(customer.href);
         } // public void AssociateToCustomer(Customer customer)
 
+        public void AssociateToCustomer(string href)
+        {
+            if (href != null)
+            {
+                links.Add("customer", href);
+                this.Save();
+            }
+        } // public void AssociateToCustomer(string href)
+
+        public override Credit Credit(Dictionary<string, object> payload)
+        {
+            return credits.Create(payload);
+        } // public override Credit Credit(Dictionary<string, object> payload)
+
+        public override Debit Debit(Dictionary<string, object> payload)
+        {
+            return debits.Create(payload);
+        } // public override Debit Debit(Dictionary<string, object> payload)
+
     } // public class BankAccount : FundingInstrument
 } // namespace ThunderPay
