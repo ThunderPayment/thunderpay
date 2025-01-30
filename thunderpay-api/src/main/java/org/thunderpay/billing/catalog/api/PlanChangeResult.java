@@ -15,13 +15,22 @@ public class PlanChangeResult {
     private final BillingActionPolicy policy;
     private final PlanAlignmentChange alignment;
 
-    public PlanChangeResult(final PriceList newPriceList, final BillingActionPolicy policy) {
+    public PlanChangeResult(final PriceList newPriceList, final BillingActionPolicy policy, final PlanAlignmentChange alignment) {
         super();
         this.newPriceList = newPriceList;
         this.policy = policy;
+        this.alignment = alignment;
     }
 
-    public PriceLst getNewPriceLst() {
+    public PriceList getNewPriceList() {
         return newPriceList;
+    }
+
+    public BillingActionPolicy getPolicy() {
+        return policy;
+    }
+
+    public PlanAlignmentChange getAlignment() {
+        return alignment;
     }
 }
