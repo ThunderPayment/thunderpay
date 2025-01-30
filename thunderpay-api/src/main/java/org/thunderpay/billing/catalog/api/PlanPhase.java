@@ -18,8 +18,12 @@ public interface PlanPhase extends CatalogEntity {
     public Fixed getFixed();
 
     public Recurring getRecurring();
-    
+
     public Usage[] getUsages();
+
+    public Duration getDuration();
+
+    public PhaseType getPhaseType();
 
     public boolean compliesWithLimits(String unit, BigDecimal value);
 }
