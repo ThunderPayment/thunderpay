@@ -15,4 +15,8 @@ public interface MutableStaticCatalog extends StaticCatalog {
     public void addCurrency(Currency currency) throws CatalogApiException;
 
     public void addProduct(Product product) throws CatalogApiException;
+
+    public void addPlan(Plan plan) throws CatalogApiException;
+
+    public void addPriceList(PriceList priceList) throws CatalogApiException;
 }
