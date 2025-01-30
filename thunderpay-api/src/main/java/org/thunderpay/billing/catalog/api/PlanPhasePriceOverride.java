@@ -21,4 +21,8 @@ public interface PlanPhasePriceOverride {
     public Currency getCurrency();
 
     public BigDecimal getFixedPrice();
+
+    public BigDecimal getRecurringPrice();
+
+    public List<UsagePriceOverride> getUsagePriceOverrides();
 }
