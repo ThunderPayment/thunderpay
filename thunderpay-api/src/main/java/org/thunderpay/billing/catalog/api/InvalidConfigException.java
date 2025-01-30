@@ -12,6 +12,10 @@
 package org.thunderpay.billing.catalog.api;
 
 public class InvalidConfigException extends Exception {
-    
+    private static final long serialVersionUID = 1L;
+
+    public InvalidConfigException(final String arg0) {
+        super(arg0);
+    }
 }
 
