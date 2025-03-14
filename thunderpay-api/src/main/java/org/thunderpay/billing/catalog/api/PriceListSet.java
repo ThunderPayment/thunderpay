@@ -13,7 +13,10 @@ package org.thunderpay.billing.catalog.api;
 import java.util.List;
 
 public interface PriceListSet {
+
     public static final String DEFAULT_PRICELIST_NAME = "DEFAULT";
+
+    public StaticCatalog getCatalog();
 
     public List<PriceList> getAllPriceLists();
 }
