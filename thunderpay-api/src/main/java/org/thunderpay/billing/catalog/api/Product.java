@@ -16,7 +16,7 @@ public interface Product extends CatalogEntity {
     public String getCatalogName();
 
     public Limit[] getLimits();
-    
+
     public boolean compliesWithLimits(String unit, BigDecimal value);
 
 }
