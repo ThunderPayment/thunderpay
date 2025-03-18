@@ -1,7 +1,7 @@
 /**
  * @file RolledUpUnit.java
  * @author Krisna Pranav
- * @brief Rolled Up Unit 
+ * @brief Rolled Up Unit
  * @version 1.0
  * @date 2025-03-18
  *
