@@ -24,7 +24,7 @@ public interface SubscriptionBundle extends Entity {
     public DateTime getOriginalCreatedDate();
 
     public List<Subscription> getSubscriptions();
-    
+
     public SubscriptionBundleTimeline getTimeline();
 
 }
