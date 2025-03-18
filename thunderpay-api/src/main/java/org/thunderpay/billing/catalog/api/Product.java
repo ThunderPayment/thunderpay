@@ -1,15 +1,22 @@
 package org.thunderpay.billing.catalog.api;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
-public class Product {
+public interface Product extends CatalogEntity {
+
     public StaticCatalog getCatalog();
 
-    public String getCatalogName();
+    public Collection<Product> getAvailable();
 
     public Collection<Product> getIncluded();
 
-    public Limit[] getLimits();
+    public ProductCategory getCategory();
 
-    public boolean compilesWithLimit(String unit, BigDecimal value);
+    public String getCatalogName();
+
+    public Limit[] getLimits();
+    
+    public boolean compliesWithLimits(String unit, BigDecimal value);
+
 }
