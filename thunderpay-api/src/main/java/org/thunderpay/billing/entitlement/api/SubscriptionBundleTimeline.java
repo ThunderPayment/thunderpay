@@ -17,6 +17,6 @@ public interface SubscriptionBundleTimeline {
     public UUID getAccountId();
     public UUID getBundleId();
     public String getExternalKey();
-    
+
     public List<SubscriptionEvent> getSubscriptionEvents();
 }
