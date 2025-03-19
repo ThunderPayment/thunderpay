@@ -17,6 +17,6 @@ import java.util.Map;
 
 public interface DatabaseExportOutputStream {
     public void newTable(String tableName, List<ColumnInfo> columnsForTable);
-    
+
     public void write(Map<String, Object> row) throws IOException;
 }
