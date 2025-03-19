@@ -23,7 +23,7 @@ public enum ControlTagType {
     AUTO_INVOICING_OFF(new UUID(0, 2), "Suspends invoicing until removed.", false, true, Collections.<ObjectType>singletonList(ObjectType.ACCOUNT)),
     OVERDUE_ENFORCEMENT_OFF(new UUID(0, 3), "Suspends overdue enforcement behaviour until removed.", false, false, Collections.<ObjectType>singletonList(ObjectType.ACCOUNT)),
     WRITTEN_OFF(new UUID(0, 4), "Indicates that an invoice is written off. No billing or payment effect.", false, false, Collections.<ObjectType>singletonList(ObjectType.INVOICE)),
-    MANUAL_PAY(new UUID(0, 5), "Indicates that Killbill doesn't process payments for that account (external payments only)", true, false, Collections.<ObjectType>singletonList(ObjectType.ACCOUNT)),
+    MANUAL_PAY(new UUID(0, 5), "Indicates that Thunderpay doesn't process payments for that account (external payments only)", true, false, Collections.<ObjectType>singletonList(ObjectType.ACCOUNT)),
     TEST(new UUID(0, 6), "Indicates that this is a test account", false, false, Collections.<ObjectType>singletonList(org.thunderpay.billing.ObjectType.ACCOUNT)),
     PARTNER(new UUID(0, 7), "Indicates that this is a partner account", false, false, Collections.<ObjectType>singletonList(org.thunderpay.billing.ObjectType.ACCOUNT)),
     AUTO_INVOICING_DRAFT(new UUID(0, 8), "Generate account invoices in DRAFT mode.", false, false, Collections.<ObjectType>singletonList(org.thunderpay.billing.ObjectType.ACCOUNT)),
