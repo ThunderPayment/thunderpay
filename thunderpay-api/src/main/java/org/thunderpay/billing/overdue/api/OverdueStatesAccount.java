@@ -15,6 +15,6 @@ import org.joda.time.Period;
 
 public interface OverdueStatesAccount {
     public Period getInitialReevaluationInterval();
-    
+
     public OverdueState[] getStates();
 }
