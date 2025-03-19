@@ -16,6 +16,6 @@ import org.thunderpay.billing.catalog.api.Currency;
 
 public interface CurrencyConversion {
     public Currency getBaseCurrency();
-    
+
     public Set<Rate> getRates();
 }
