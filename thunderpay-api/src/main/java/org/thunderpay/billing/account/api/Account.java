@@ -16,6 +16,6 @@ import org.thunderpay.billing.util.entity.Entity;
 
 public interface Account extends AccountData, ImmutableAccountData, Blockable, Entity {
     public MutableAccountData toMutableAccountData();
-    
+
     public Account mergeWithDelegate(final Account delegate);
 }
