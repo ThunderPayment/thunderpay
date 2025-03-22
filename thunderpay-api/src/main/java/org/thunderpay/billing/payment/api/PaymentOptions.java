@@ -15,6 +15,6 @@ import java.util.List;
 
 public interface PaymentOptions {
     public boolean isExternalPayment();
-    
+
     public List<String> getPaymentControlPluginNames();
 }
