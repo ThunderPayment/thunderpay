@@ -1,3 +1,14 @@
+/**
+ * @file Strings.java
+ * @author Krisna Pranav
+ * @brief Strings
+ * @version 1.0
+ * @date 2025-03-22
+ *
+ * @copyright Copyright (c) 2024 ThunderPayment Developers, Krisna Pranav
+ *
+ */
+
 package org.thunderpay.commons.utils;
 
 import java.util.Collections;
