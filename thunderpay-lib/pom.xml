@@ -25,6 +25,7 @@
         <module>config-magic</module>
         <module>metric-api</module>
         <module>metrics</module>
+        <module>utils</module>
     </modules>
 
     <properties>

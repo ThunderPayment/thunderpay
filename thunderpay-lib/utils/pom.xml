@@ -3,16 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.thunderpay</groupId>
         <artifactId>thunderpay-lib</artifactId>
         <version>1.0-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>thunderpay-commons</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>utils</artifactId>
 
     <properties>
         <maven.compiler.source>23</maven.compiler.source>
@@ -29,19 +26,20 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
+            <version>2.0.16</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
-            <version>2.0.9</version>
             <scope>test</scope>
+            <version>2.0.9</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>7.8.0</version>
             <scope>test</scope>
+            <version>7.8.0</version>
         </dependency>
     </dependencies>
+
 </project>
