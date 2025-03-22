@@ -24,6 +24,6 @@ public interface GatewayNotification {
     public String getEntity();
 
     public Map<String, List<String>> getHeaders();
-    
+
     public List<PluginProperty> getProperties();
 }
