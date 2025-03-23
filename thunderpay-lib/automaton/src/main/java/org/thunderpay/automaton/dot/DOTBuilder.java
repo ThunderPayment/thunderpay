@@ -13,9 +13,7 @@ package org.thunderpay.automaton.dot;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Nullable;
-
-//import org.thunderpay.commons.utils.MapJoiner;
-//import org.thunderpay.utils.
+import org.thunderpay.commons.utils.MapJoiner;
 
 public class DOTBuilder {
 
