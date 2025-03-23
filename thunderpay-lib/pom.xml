@@ -17,6 +17,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>automaton</module>
         <module>clock</module>
         <module>commons</module>
         <module>concurrent</module>
