@@ -13,7 +13,6 @@ package org.thunderpay.mysql;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.TreeMap;
-
 import org.thunderpay.commons.utils.MapJoiner;
 import org.thunderpay.commons.utils.annotation.VisibleForTesting;
 import org.mariadb.jdbc.Configuration;
