@@ -11,7 +11,7 @@
 
 package org.thunderpay.billing.catalog.api;
 
-import javax.xml.bind.annotation.XmlEnum;
+import jakarta.xml.bind.annotation.XmlEnum;
 
 @XmlEnum
 public enum TimeUnit {
