@@ -14,5 +14,6 @@
 
     <modules>
         <module>shared</module>
+        <module>h2</module>
     </modules>
 </project>
