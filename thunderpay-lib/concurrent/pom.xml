@@ -9,6 +9,8 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
+    <packaging>pom</packaging>
+
     <artifactId>thunderpay-concurrent</artifactId>
 
     <dependencies>
