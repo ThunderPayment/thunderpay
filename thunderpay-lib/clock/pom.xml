@@ -9,6 +9,8 @@
 
     <artifactId>thunderpay-clock</artifactId>
 
+    <packaging>pom</packaging>
+
     <dependencies>
         <dependency>
             <groupId>com.google.inject</groupId>
