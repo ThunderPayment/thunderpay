@@ -51,7 +51,7 @@ public class MySQLStandaloneDB extends GenericStandaloneDB {
         super.initialize();
 
         if (useMariaDB) {
-            final KillBillMariaDbDataSource mariaDBDataSource = new KillBillMariaDbDataSource();
+            final ThunderpayMariaDbDataSource mariaDBDataSource = new ThunderpayMariaDbDataSource();
             try {
                 mariaDBDataSource.setUrl(jdbcConnectionString);
             } catch (final SQLException e) {
