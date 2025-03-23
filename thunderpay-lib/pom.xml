@@ -21,6 +21,7 @@
         <module>clock</module>
         <module>commons</module>
         <module>concurrent</module>
+        <module>embeddeddb</module>
         <module>xmlloader</module>
         <module>skeleton</module>
         <module>config-magic</module>
