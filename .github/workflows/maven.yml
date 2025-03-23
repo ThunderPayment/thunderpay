@@ -23,6 +23,10 @@ jobs:
           java -version
           mvn -version
 
+      - name: Install Dependencies
+        run: |
+          mvn clean install
+
   build-macos:
     runs-on: macos-latest
 
@@ -40,3 +44,7 @@ jobs:
           export PATH="$JAVA_HOME/bin:$PATH"
           java -version
           mvn -version
+
+      - name: Install Dependencies
+        run: |
+          mvn clean install
