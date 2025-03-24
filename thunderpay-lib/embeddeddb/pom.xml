@@ -16,5 +16,6 @@
         <module>shared</module>
         <module>h2</module>
         <module>mysql</module>
+        <module>postgresql</module>
     </modules>
 </project>
