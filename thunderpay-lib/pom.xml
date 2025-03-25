@@ -28,6 +28,7 @@
         <module>metric-api</module>
         <module>metrics</module>
         <module>utils</module>
+        <module>locker</module>
     </modules>
 
     <properties>
