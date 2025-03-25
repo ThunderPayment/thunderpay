@@ -10,6 +10,15 @@
 
 package org.thunderpay.locker;
 
-public class GlobalLockDao {
-    
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.concurrent.TimeUnit;
+
+public interface GlobalLockDao {
+
+    boolean lock(final Connection connection, final String lockName, final long timeout, final TimeUnit timeUnit) throws SQLException;
+
+    boolean releaseLock(final Connection connection, final String lockName) throws SQLException;
+
+    boolean isLockFree(final Connection connection, final String lockName) throws SQLException;
 }
