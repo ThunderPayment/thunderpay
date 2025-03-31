@@ -14,8 +14,12 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import org.thunderpay.locker.GlobalLock;
+import org.thunderpay.locker.GlobalLocker;
+import org.thunderpay.locker.GlobalLockerBase;
 
-public class MemoryGlobalLocker {
+public class MemoryGlobalLocker extends GlobalLockerBase implements GlobalLocker {
+
     private final Map<String, AtomicBoolean> locks = new ConcurrentHashMap<String, AtomicBoolean>();
 
     public MemoryGlobalLocker() {
@@ -31,6 +35,32 @@ public class MemoryGlobalLocker {
     private synchronized Boolean isFree(final String lockName) {
         final AtomicBoolean lock = locks.get(lockName);
         return lock == null || !lock.get();
+    }
+
+    @Override
+    protected synchronized GlobalLock doLock(final String lockName) {
+        if (!isFree(lockName)) {
+            return null;
+        }
+
+        if (locks.get(lockName) == null) {
+            locks.put(lockName, new AtomicBoolean(true));
+        } else {
+            locks.get(lockName).set(true);
+        }
+
+        final GlobalLock lock = new GlobalLock() {
+            @Override
+            public void release() {
+                if (lockTable.releaseLock(lockName)) {
+                    locks.get(lockName).set(false);
+                }
+            }
+        };
+
+        lockTable.createLock(lockName, lock);
+
+        return lock;
     }
 
     @Override
